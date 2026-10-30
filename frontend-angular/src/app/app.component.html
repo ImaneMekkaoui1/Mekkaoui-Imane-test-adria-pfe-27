@@ -1,0 +1,407 @@
+<div class="min-h-screen">
+  <!-- Top Navigation Bar (Clean White) -->
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <div class="brand-logo">
+          <span>A</span>
+        </div>
+        <div>
+          <h1 class="brand-title">Adria Bank</h1>
+          <p class="brand-subtitle">Plateforme Microservices &amp; IA Agentique</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs">
+        <button class="nav-tab" [class.active]="activeTab === 'accounts'" (click)="activeTab = 'accounts'">
+          💳 Comptes
+        </button>
+        <button class="nav-tab" [class.active]="activeTab === 'transactions'" (click)="activeTab = 'transactions'">
+          💸 Transactions &amp; Virements
+        </button>
+        <button class="nav-tab" [class.active]="activeTab === 'audit'" (click)="activeTab = 'audit'">
+          🛡️ Piste d'Audit Kafka
+        </button>
+        <button class="nav-tab" [class.active]="activeTab === 'chatbot'" (click)="activeTab = 'chatbot'">
+          🤖 Assistant IA
+        </button>
+      </nav>
+
+      <!-- System Status Pill -->
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Gateway :8080 Connectée</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="container main-content">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: COMPTES BANCAIRES                   -->
+    <!-- ========================================== -->
+    <div *ngIf="activeTab === 'accounts'" class="tab-pane">
+      <!-- Metrics Overview Cards -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon primary">💶</div>
+          <div>
+            <div class="metric-label">Solde Actif Global</div>
+            <div class="metric-value">{{ totalBalance | number:'1.2-2' }} EUR</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon success">✅</div>
+          <div>
+            <div class="metric-label">Comptes Actifs</div>
+            <div class="metric-value text-emerald-600">{{ activeAccountsCount }}</div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon danger">⛔</div>
+          <div>
+            <div class="metric-label">Comptes Bloqués</div>
+            <div class="metric-value text-rose-600">{{ blockedAccountsCount }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2-cols">
+        <!-- Accounts Table Card -->
+        <div class="card col-span-2">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Portefeuille des Comptes Bancaires</h2>
+              <p class="card-subtitle">Exposition synchronisée via REST, GraphQL et MCP</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" (click)="loadData()">🔄 Rafraîchir</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Identifiant UUID</th>
+                  <th>Réf. Client</th>
+                  <th>Devise</th>
+                  <th>Solde Disponible</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let acc of accounts">
+                  <td class="font-mono text-xs text-slate-500">{{ acc.id }}</td>
+                  <td class="font-semibold">{{ acc.customerReference }}</td>
+                  <td><span class="badge badge-info">{{ acc.currency }}</span></td>
+                  <td class="font-semibold text-slate-900">{{ acc.balance | number:'1.2-2' }} {{ acc.currency }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="acc.status === 'ACTIVE' ? 'badge-active' : 'badge-blocked'">
+                      {{ acc.status === 'ACTIVE' ? '● ACTIF' : '■ BLOQUÉ' }}
+                    </span>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm" [ngClass]="acc.status === 'ACTIVE' ? 'btn-danger' : 'btn-success'"
+                            (click)="handleToggleStatus(acc.id)">
+                      {{ acc.status === 'ACTIVE' ? 'Bloquer' : 'Activer' }}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Create Account Card -->
+        <div class="card">
+          <h2 class="card-title">Ouvrir un Nouveau Compte</h2>
+          <p class="card-subtitle">Enregistrement instantané dans account-service</p>
+
+          <form (submit)="$event.preventDefault(); handleCreateAccount()" class="mt-4">
+            <div class="form-group">
+              <label class="form-label">Référence Client</label>
+              <input type="text" class="form-control" placeholder="ex: CUST-2026"
+                     [(ngModel)]="newAccount.customerReference" name="customerRef" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Devise</label>
+                <select class="form-control" [(ngModel)]="newAccount.currency" name="currency">
+                  <option value="EUR">EUR (€)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="MAD">MAD (DH)</option>
+                </select>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Solde Initial</label>
+                <input type="number" class="form-control" min="0" step="100"
+                       [(ngModel)]="newAccount.initialBalance" name="initialBalance">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full">
+              ➕ Créer le Compte Bancaire
+            </button>
+
+            <div *ngIf="accountFeedback" class="alert mt-3" [class.alert-success]="accountFeedback.success" [class.alert-danger]="!accountFeedback.success">
+              {{ accountFeedback.message }}
+            </div>
+          </form>
+        </div>
+
+        <!-- API Specs Quick Info -->
+        <div class="card">
+          <h2 class="card-title">Connecteurs &amp; Protocoles</h2>
+          <p class="card-subtitle">Tous reliés à la même couche service</p>
+          <ul class="specs-list mt-3">
+            <li>
+              <span class="badge badge-info">REST</span>
+              <code>POST /api/accounts</code> &amp; <code>GET /api/accounts/&#123;id&#125;</code>
+            </li>
+            <li>
+              <span class="badge badge-purple">GraphQL</span>
+              <code>query &#123; allAccounts &#123; id balance status &#125; &#125;</code>
+            </li>
+            <li>
+              <span class="badge badge-active">MCP</span>
+              <code>tools/call -> get_account_by_id</code>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: TRANSACTIONS & VIREMENTS           -->
+    <!-- ========================================== -->
+    <div *ngIf="activeTab === 'transactions'" class="tab-pane">
+      <div class="grid-2-cols">
+        <!-- Transfer Form Card -->
+        <div class="card">
+          <h2 class="card-title">Effectuer un Virement Bancaire</h2>
+          <p class="card-subtitle">Exécution atomique avec contrôle de solde et plafond (max 1000 EUR)</p>
+
+          <form (submit)="$event.preventDefault(); handleTransfer()" class="mt-4">
+            <div class="form-group">
+              <label class="form-label">Compte Émetteur (Source)</label>
+              <select class="form-control" [(ngModel)]="transferData.sourceAccountId" name="sourceAcc">
+                <option *ngFor="let a of accounts" [value]="a.id">
+                  {{ a.customerReference }} — {{ a.balance | number:'1.2-2' }} {{ a.currency }} ({{ a.status }})
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Compte Bénéficiaire (Destination)</label>
+              <select class="form-control" [(ngModel)]="transferData.targetAccountId" name="targetAcc">
+                <option *ngFor="let a of accounts" [value]="a.id">
+                  {{ a.customerReference }} — {{ a.balance | number:'1.2-2' }} {{ a.currency }} ({{ a.status }})
+                </option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Montant (Max 1000 EUR)</label>
+                <input type="number" class="form-control" min="1" max="1000" step="10"
+                       [(ngModel)]="transferData.amount" name="amount" required>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Devise</label>
+                <input type="text" class="form-control" [(ngModel)]="transferData.currency" name="currency" readonly>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full">
+              🚀 Valider et Exécuter le Virement
+            </button>
+
+            <div *ngIf="transferFeedback" class="alert mt-3" [class.alert-success]="transferFeedback.success" [class.alert-danger]="!transferFeedback.success">
+              {{ transferFeedback.message }}
+            </div>
+          </form>
+        </div>
+
+        <!-- Business Rules Box -->
+        <div class="card">
+          <h2 class="card-title">Règles Métier Appliquées</h2>
+          <div class="rules-box mt-3">
+            <div class="rule-item">
+              <span class="rule-num">1</span>
+              <div>
+                <strong>Plafond de 1000 EUR :</strong>
+                <p class="text-xs text-slate-500">Injecté depuis Config-Service (<code>bank.transaction.max-amount</code>).</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">2</span>
+              <div>
+                <strong>Compte Actif Requis :</strong>
+                <p class="text-xs text-slate-500">Rejet immédiat si le statut du compte est BLOCKED.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">3</span>
+              <div>
+                <strong>Résilience OpenFeign :</strong>
+                <p class="text-xs text-slate-500">Disjoncteur Resilience4J protégeant contre toute défaillance.</p>
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">4</span>
+              <div>
+                <strong>Streaming Kafka :</strong>
+                <p class="text-xs text-slate-500">Événement émis sur <code>bank.transactions.created</code> avec clé accountId.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transactions History Card -->
+        <div class="card col-span-2">
+          <h2 class="card-title">Historique des Transactions Récentes</h2>
+          <p class="card-subtitle">Journal des débits, crédits et achats commerçants</p>
+
+          <div class="table-responsive mt-3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID Transaction</th>
+                  <th>Compte Associé</th>
+                  <th>Type / Catégorie</th>
+                  <th>Montant</th>
+                  <th>Pays</th>
+                  <th>Date &amp; Heure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tx of transactions">
+                  <td class="font-mono text-xs text-slate-500">{{ tx.id }}</td>
+                  <td class="font-mono text-xs">{{ tx.accountId | slice:0:18 }}...</td>
+                  <td>
+                    <span class="badge" [ngClass]="tx.merchantCategory.includes('CREDIT') ? 'badge-active' : 'badge-info'">
+                      {{ tx.merchantCategory }}
+                    </span>
+                  </td>
+                  <td class="font-semibold" [ngClass]="tx.merchantCategory.includes('CREDIT') ? 'text-emerald-600' : 'text-slate-900'">
+                    {{ tx.merchantCategory.includes('CREDIT') ? '+' : '-' }}{{ tx.amount | number:'1.2-2' }} {{ tx.currency }}
+                  </td>
+                  <td><span class="badge badge-purple">{{ tx.country }}</span></td>
+                  <td class="text-xs text-slate-500">{{ tx.createdAt | date:'medium' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: PISTE D'AUDIT KAFKA                -->
+    <!-- ========================================== -->
+    <div *ngIf="activeTab === 'audit'" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Événements Kafka Reçus (Topic: bank.transactions.created)</h2>
+            <p class="card-subtitle">Journalisation asynchrone dans audit-service (Consumer Group: audit-group)</p>
+          </div>
+          <span class="badge badge-active">Broker Connecté</span>
+        </div>
+
+        <div class="audit-stream mt-4">
+          <div *ngFor="let ev of auditEvents" class="audit-card">
+            <div class="audit-card-top">
+              <div class="flex items-center gap-2">
+                <span class="badge badge-purple">Event: {{ ev.eventType }}</span>
+                <span class="font-mono text-xs text-slate-500">ID: {{ ev.eventId }}</span>
+              </div>
+              <span class="text-xs text-slate-400">Reçu : {{ ev.receivedAt | date:'mediumTime' }}</span>
+            </div>
+
+            <div class="audit-body">
+              <div class="audit-item">
+                <span class="audit-k">Clé Partition Kafka (accountId):</span>
+                <span class="audit-v font-mono">{{ ev.accountId }}</span>
+              </div>
+              <div class="audit-item">
+                <span class="audit-k">Montant Notifié:</span>
+                <span class="audit-v font-semibold text-emerald-600">{{ ev.amount | number:'1.2-2' }} {{ ev.currency }}</span>
+              </div>
+              <div class="audit-item">
+                <span class="audit-k">Horodatage Transaction:</span>
+                <span class="audit-v">{{ ev.occurredAt | date:'medium' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: CHATBOT AGENTIQUE IA (SPRING AI & MCP) -->
+    <!-- ========================================== -->
+    <div *ngIf="activeTab === 'chatbot'" class="tab-pane">
+      <div class="card chatbot-card">
+        <div class="chatbot-header">
+          <div class="flex items-center gap-3">
+            <div class="bot-avatar">🤖</div>
+            <div>
+              <h2 class="card-title">Assistant Bancaire Intelligent</h2>
+              <p class="card-subtitle">Propulsé par Spring AI &amp; Model Context Protocol (MCP)</p>
+            </div>
+          </div>
+          <span class="badge badge-active">MCP Tools Actifs</span>
+        </div>
+
+        <!-- Chat Conversation Messages -->
+        <div class="chat-messages">
+          <div *ngFor="let msg of chatMessages" class="chat-bubble-wrapper"
+               [class.user-wrapper]="msg.sender === 'user'"
+               [class.bot-wrapper]="msg.sender === 'assistant'">
+            
+            <div class="chat-bubble" [class.user-bubble]="msg.sender === 'user'" [class.bot-bubble]="msg.sender === 'assistant'">
+              <p class="chat-text">{{ msg.text }}</p>
+              
+              <div *ngIf="msg.toolUsed && msg.toolUsed !== 'none'" class="tool-pill">
+                🔧 Tool MCP exécuté : <code>{{ msg.toolUsed }}</code>
+              </div>
+
+              <span class="chat-time">{{ msg.timestamp }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Question Chips -->
+        <div class="quick-chips">
+          <button class="chip" (click)="sendQuickPrompt('Quel est le solde de mon compte principal ?')">
+            💰 Solde du compte principal
+          </button>
+          <button class="chip" (click)="sendQuickPrompt('Effectuer un virement de 100 EUR')">
+            💸 Virement de 100 EUR
+          </button>
+          <button class="chip" (click)="sendQuickPrompt('Ouvrir un nouveau compte en EUR')">
+            ➕ Créer un compte
+          </button>
+        </div>
+
+        <!-- Message Input Box -->
+        <form (submit)="$event.preventDefault(); handleSendMessage()" class="chat-input-bar">
+          <input type="text" class="form-control chat-input" placeholder="Posez une question à l'assistant bancaire..."
+                 [(ngModel)]="userInput" name="userInput">
+          <button type="submit" class="btn btn-primary send-btn">
+            Envoyer 🚀
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+</div>
