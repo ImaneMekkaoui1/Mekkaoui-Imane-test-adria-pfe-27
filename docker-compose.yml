@@ -1,0 +1,135 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: bank-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - bank-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: bank-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - bank-network
+
+  discovery-service:
+    build:
+      context: ./discovery-service
+    container_name: bank-discovery-service
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - bank-network
+
+  config-service:
+    build:
+      context: ./config-service
+    container_name: bank-config-service
+    depends_on:
+      - discovery-service
+    ports:
+      - "8888:8888"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - bank-network
+
+  gateway-service:
+    build:
+      context: ./gateway-service
+    container_name: bank-gateway-service
+    depends_on:
+      - discovery-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - bank-network
+
+  account-service:
+    build:
+      context: ./account-service
+    container_name: bank-account-service
+    depends_on:
+      - discovery-service
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+    networks:
+      - bank-network
+
+  transaction-service:
+    build:
+      context: ./transaction-service
+    container_name: bank-transaction-service
+    depends_on:
+      - discovery-service
+      - kafka
+      - account-service
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - ACCOUNT-SERVICE_URL=http://account-service:8081
+    networks:
+      - bank-network
+
+  audit-service:
+    build:
+      context: ./audit-service
+    container_name: bank-audit-service
+    depends_on:
+      - discovery-service
+      - kafka
+    ports:
+      - "8083:8083"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    networks:
+      - bank-network
+
+  chatbot-service:
+    build:
+      context: ./chatbot-service
+    container_name: bank-chatbot-service
+    depends_on:
+      - discovery-service
+      - account-service
+      - transaction-service
+    ports:
+      - "8084:8084"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/
+      - CHATBOT_ACCOUNT-SERVICE-URL=http://account-service:8081
+      - CHATBOT_TRANSACTION-SERVICE-URL=http://transaction-service:8082
+    networks:
+      - bank-network
+
+networks:
+  bank-network:
+    driver: bridge
+
