@@ -1,120 +1,119 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
-  <!-- Browser Frame (Light Theme) -->
-  <rect width="1200" height="700" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-  <rect width="1200" height="42" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
-  <rect y="30" width="1200" height="12" fill="#ffffff"/>
-  <circle cx="22" cy="21" r="5" fill="#ef4444"/>
-  <circle cx="38" cy="21" r="5" fill="#f59e0b"/>
-  <circle cx="54" cy="21" r="5" fill="#10b981"/>
-  
-  <!-- Address Bar -->
-  <rect x="140" y="8" width="920" height="26" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
-  <text x="160" y="25" fill="#475569" font-family="-apple-system, sans-serif" font-size="12">🔒 http://localhost:4200 — Adria Bank (Angular Client Web)</text>
+  <defs>
+    <style>
+      .app-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; fill: #0f172a; }
+      .app-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .tab-btn { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; }
+      .card-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #64748b; }
+      .card-val { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
+      .table-hdr { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; font-weight: 600; fill: #475569; }
+      .table-cell { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; fill: #1e293b; }
+      .badge-act { font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #047857; }
+    </style>
+  </defs>
 
-  <!-- Angular App Header (Clean White) -->
-  <rect y="42" width="1200" height="70" fill="#ffffff" stroke="#e2e8f0"/>
-  
-  <!-- Logo & Title -->
-  <rect x="40" y="55" width="44" height="44" rx="10" fill="#2563eb"/>
-  <text x="62" y="84" fill="#ffffff" font-family="sans-serif" font-size="22" font-weight="900" text-anchor="middle">A</text>
-  <text x="96" y="74" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="800">Adria Bank</text>
-  <text x="96" y="92" fill="#64748b" font-family="sans-serif" font-size="11">Plateforme Microservices &amp; IA Agentique</text>
+  <rect width="1200" height="700" fill="#f8fafc" />
+  <rect x="20" y="15" width="1160" height="670" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
 
-  <!-- Nav Tabs -->
-  <rect x="400" y="56" width="500" height="42" rx="8" fill="#f1f5f9"/>
-  <rect x="404" y="60" width="100" height="34" rx="6" fill="#ffffff"/>
-  <text x="454" y="82" fill="#2563eb" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">💳 Comptes</text>
-  <text x="565" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">💸 Virements</text>
-  <text x="685" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">🛡️ Piste Kafka</text>
-  <text x="820" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">🤖 Assistant IA</text>
+  <rect x="20" y="15" width="1160" height="65" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+  <rect x="45" y="30" width="36" height="36" rx="8" fill="#2563eb" />
+  <text x="56" y="54" font-family="sans-serif" font-size="20" font-weight="800" fill="#ffffff">A</text>
 
-  <!-- Status Pill -->
-  <rect x="980" y="62" width="180" height="30" rx="15" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <circle cx="995" cy="77" r="4" fill="#10b981"/>
-  <text x="1005" y="82" fill="#047857" font-family="sans-serif" font-size="11" font-weight="bold">Gateway :8080 Connectée</text>
+  <text x="95" y="45" class="app-title" font-size="18">Adria Bank</text>
+  <text x="95" y="60" class="app-sub">Plateforme Microservices &amp; IA Agentique</text>
 
-  <!-- Metrics Section -->
-  <rect x="40" y="130" width="360" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
-  <rect x="55" y="145" width="50" height="55" rx="8" fill="#eff6ff"/>
-  <text x="80" y="180" fill="#2563eb" font-size="24" text-anchor="middle">💶</text>
-  <text x="120" y="160" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600">Solde Actif Global</text>
-  <text x="120" y="188" fill="#0f172a" font-family="sans-serif" font-size="22" font-weight="800">6 500.00 EUR</text>
+  <rect x="340" y="30" width="115" height="36" rx="6" fill="#2563eb" />
+  <text x="365" y="53" class="tab-btn" fill="#ffffff">Comptes</text>
 
-  <rect x="420" y="130" width="360" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
-  <rect x="435" y="145" width="50" height="55" rx="8" fill="#ecfdf5"/>
-  <text x="460" y="180" fill="#10b981" font-size="24" text-anchor="middle">✅</text>
-  <text x="500" y="160" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600">Comptes Actifs</text>
-  <text x="500" y="188" fill="#059669" font-family="sans-serif" font-size="22" font-weight="800">2 comptes</text>
+  <rect x="465" y="30" width="200" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="480" y="53" class="tab-btn" fill="#64748b">Transactions &amp; Virements</text>
 
-  <rect x="800" y="130" width="360" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
-  <rect x="815" y="145" width="50" height="55" rx="8" fill="#fef2f2"/>
-  <text x="840" y="180" fill="#ef4444" font-size="24" text-anchor="middle">⛔</text>
-  <text x="880" y="160" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600">Comptes Bloqués</text>
-  <text x="880" y="188" fill="#dc2626" font-family="sans-serif" font-size="22" font-weight="800">1 compte</text>
+  <rect x="675" y="30" width="165" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="690" y="53" class="tab-btn" fill="#64748b">Piste d Audit Kafka</text>
 
-  <!-- Left: Accounts Table -->
-  <rect x="40" y="235" width="760" height="435" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
-  <text x="65" y="270" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="800">Portefeuille des Comptes Bancaires</text>
-  <text x="65" y="290" fill="#64748b" font-family="sans-serif" font-size="11">Exposition unifiée via REST, GraphQL et MCP Server</text>
+  <rect x="850" y="30" width="130" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="865" y="53" class="tab-btn" fill="#64748b">Assistant IA</text>
 
-  <!-- Table Header -->
-  <rect x="65" y="310" width="710" height="35" fill="#f8fafc" stroke="#e2e8f0"/>
-  <text x="80" y="332" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">UUID DU COMPTE</text>
-  <text x="270" y="332" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">RÉF. CLIENT</text>
-  <text x="400" y="332" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">SOLDE DISPONIBLE</text>
-  <text x="560" y="332" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">STATUT</text>
-  <text x="670" y="332" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">ACTION</text>
+  <rect x="1000" y="34" width="155" height="28" rx="14" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <circle cx="1015" cy="48" r="4" fill="#10b981" />
+  <text x="1026" y="52" font-family="sans-serif" font-size="11" font-weight="600" fill="#047857">Gateway :8080 Connectee</text>
 
-  <!-- Row 1 -->
-  <line x1="65" y1="385" x2="775" y2="385" stroke="#f1f5f9"/>
-  <text x="80" y="370" fill="#64748b" font-family="monospace" font-size="11">11111111-1111-1111-1111-111111111111</text>
-  <text x="270" y="370" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">CUST-1001</text>
-  <text x="400" y="370" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">5 000.00 EUR</text>
-  <rect x="560" y="355" width="80" height="22" rx="11" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <text x="600" y="370" fill="#047857" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">● ACTIF</text>
-  <rect x="670" y="355" width="65" height="22" rx="5" fill="#fef2f2" stroke="#fecaca"/>
-  <text x="702" y="370" fill="#b91c1c" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Bloquer</text>
+  <rect x="45" y="105" width="260" height="85" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="65" y="130" class="card-title">SOLDE TOTAL EN GESTION</text>
+  <text x="65" y="165" class="card-val">7 550,00 EUR</text>
 
-  <!-- Row 2 -->
-  <line x1="65" y1="435" x2="775" y2="435" stroke="#f1f5f9"/>
-  <text x="80" y="415" fill="#64748b" font-family="monospace" font-size="11">22222222-2222-2222-2222-222222222222</text>
-  <text x="270" y="415" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">CUST-1002</text>
-  <text x="400" y="415" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">1 500.00 EUR</text>
-  <rect x="560" y="400" width="80" height="22" rx="11" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <text x="600" y="415" fill="#047857" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">● ACTIF</text>
-  <rect x="670" y="400" width="65" height="22" rx="5" fill="#fef2f2" stroke="#fecaca"/>
-  <text x="702" y="415" fill="#b91c1c" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Bloquer</text>
+  <rect x="325" y="105" width="260" height="85" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="345" y="130" class="card-title">COMPTES BANCAIRES</text>
+  <text x="345" y="165" class="card-val">4 Actifs</text>
 
-  <!-- Row 3 -->
-  <line x1="65" y1="485" x2="775" y2="485" stroke="#f1f5f9"/>
-  <text x="80" y="460" fill="#64748b" font-family="monospace" font-size="11">99999999-9999-9999-9999-999999999999</text>
-  <text x="270" y="460" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">CUST-1003</text>
-  <text x="400" y="460" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">200.00 EUR</text>
-  <rect x="560" y="445" width="80" height="22" rx="11" fill="#fef2f2" stroke="#fecaca"/>
-  <text x="600" y="460" fill="#b91c1c" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">■ BLOQUÉ</text>
-  <rect x="670" y="445" width="65" height="22" rx="5" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <text x="702" y="460" fill="#047857" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Activer</text>
+  <rect x="605" y="105" width="260" height="85" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="625" y="130" class="card-title">PLAFOND VIREMENT</text>
+  <text x="625" y="165" class="card-val">1 000,00 EUR</text>
 
-  <!-- Right: Form Create Account -->
-  <rect x="820" y="235" width="340" height="435" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
-  <text x="845" y="270" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="800">Ouvrir un Nouveau Compte</text>
-  <text x="845" y="290" fill="#64748b" font-family="sans-serif" font-size="11">Enregistrement dans account-service</text>
+  <rect x="885" y="105" width="270" height="85" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="905" y="130" class="card-title">TOPIC KAFKA</text>
+  <text x="905" y="165" class="card-val" font-size="16" fill="#2563eb">bank.transactions.created</text>
 
-  <text x="845" y="330" fill="#334155" font-family="sans-serif" font-size="11" font-weight="700">RÉFÉRENCE CLIENT</text>
-  <rect x="845" y="340" width="290" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="860" y="364" fill="#0f172a" font-family="sans-serif" font-size="13">CUST-IMANE-2026</text>
+  <rect x="45" y="215" width="760" height="445" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="70" y="245" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f172a">Portefeuille des Comptes Bancaires</text>
 
-  <text x="845" y="405" fill="#334155" font-family="sans-serif" font-size="11" font-weight="700">DEVISE</text>
-  <rect x="845" y="415" width="135" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="860" y="439" fill="#0f172a" font-family="sans-serif" font-size="13">EUR (€)</text>
+  <rect x="65" y="265" width="720" height="35" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="80" y="287" class="table-hdr">Reference Client</text>
+  <text x="240" y="287" class="table-hdr">Identifiant Unique (UUID)</text>
+  <text x="490" y="287" class="table-hdr">Devise</text>
+  <text x="560" y="287" class="table-hdr">Statut</text>
+  <text x="670" y="287" class="table-hdr">Solde Actuel</text>
 
-  <text x="1000" y="405" fill="#334155" font-family="sans-serif" font-size="11" font-weight="700">SOLDE INITIAL</text>
-  <rect x="1000" y="415" width="135" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="1015" y="439" fill="#0f172a" font-family="sans-serif" font-size="13">3 000.00</text>
+  <rect x="65" y="305" width="720" height="45" fill="#ffffff" stroke="#f1f5f9"/>
+  <text x="80" y="332" font-family="sans-serif" font-size="13" font-weight="600" fill="#0f172a">CUST-ADRIA-001</text>
+  <text x="240" y="332" class="table-cell">a1b2c3d4-e5f6-7a8b...</text>
+  <text x="490" y="332" class="table-cell">EUR</text>
+  <rect x="555" y="317" width="65" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="567" y="332" class="badge-act">ACTIVE</text>
+  <text x="670" y="332" class="table-cell" font-weight="700" fill="#2563eb">2 500,00 EUR</text>
 
-  <rect x="845" y="480" width="290" height="42" rx="6" fill="#2563eb"/>
-  <text x="990" y="506" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">➕ Créer le Compte Bancaire</text>
+  <rect x="65" y="355" width="720" height="45" fill="#f8fafc" stroke="#f1f5f9"/>
+  <text x="80" y="382" font-family="sans-serif" font-size="13" font-weight="600" fill="#0f172a">CUST-ADRIA-002</text>
+  <text x="240" y="382" class="table-cell">b2c3d4e5-f6a7-8b9c...</text>
+  <text x="490" y="382" class="table-cell">EUR</text>
+  <rect x="555" y="367" width="65" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="567" y="382" class="badge-act">ACTIVE</text>
+  <text x="670" y="382" class="table-cell" font-weight="700" fill="#2563eb">1 200,00 EUR</text>
 
-  <rect x="845" y="540" width="290" height="45" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <text x="860" y="567" fill="#047857" font-family="sans-serif" font-size="11" font-weight="600">✓ Compte créé avec succès (Statut: ACTIVE)</text>
+  <rect x="65" y="405" width="720" height="45" fill="#ffffff" stroke="#f1f5f9"/>
+  <text x="80" y="432" font-family="sans-serif" font-size="13" font-weight="600" fill="#0f172a">CUST-ADRIA-003</text>
+  <text x="240" y="432" class="table-cell">c3d4e5f6-a7b8-9c0d...</text>
+  <text x="490" y="432" class="table-cell">MAD</text>
+  <rect x="555" y="417" width="65" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="567" y="432" class="badge-act">ACTIVE</text>
+  <text x="670" y="432" class="table-cell" font-weight="700" fill="#2563eb">35 000,00 MAD</text>
+
+  <rect x="65" y="455" width="720" height="45" fill="#f8fafc" stroke="#f1f5f9"/>
+  <text x="80" y="482" font-family="sans-serif" font-size="13" font-weight="600" fill="#0f172a">CUST-ADRIA-004</text>
+  <text x="240" y="482" class="table-cell">d4e5f6a7-b8c9-0d1e...</text>
+  <text x="490" y="482" class="table-cell">USD</text>
+  <rect x="555" y="467" width="65" height="22" rx="4" fill="#fef2f2" stroke="#fecaca"/>
+  <text x="562" y="482" class="badge-act" fill="#b91c1c">BLOCKED</text>
+  <text x="670" y="482" class="table-cell" font-weight="700" fill="#64748b">850,00 USD</text>
+
+  <rect x="825" y="215" width="330" height="445" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="845" y="245" font-family="sans-serif" font-size="15" font-weight="700" fill="#0f172a">Creer un Compte Bancaire</text>
+
+  <text x="845" y="280" font-family="sans-serif" font-size="12" font-weight="600" fill="#475569">Reference Client</text>
+  <rect x="845" y="295" width="290" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="860" y="320" class="table-cell" fill="#0f172a">CUST-ADRIA-005</text>
+
+  <text x="845" y="355" font-family="sans-serif" font-size="12" font-weight="600" fill="#475569">Devise</text>
+  <rect x="845" y="370" width="290" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="860" y="395" class="table-cell" fill="#0f172a">EUR - Euro</text>
+
+  <text x="845" y="430" font-family="sans-serif" font-size="12" font-weight="600" fill="#475569">Solde Initial</text>
+  <rect x="845" y="445" width="290" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="860" y="470" class="table-cell" fill="#0f172a">1500.00</text>
+
+  <rect x="845" y="505" width="290" height="42" rx="6" fill="#2563eb"/>
+  <text x="915" y="531" font-family="sans-serif" font-size="13" font-weight="700" fill="#ffffff">Enregistrer le Compte</text>
+
+  <rect x="845" y="560" width="290" height="45" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="860" y="587" fill="#047857" font-family="sans-serif" font-size="11" font-weight="600">Compte cree avec succes (Statut: ACTIVE)</text>
 </svg>

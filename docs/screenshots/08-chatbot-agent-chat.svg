@@ -1,42 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="100%" height="100%">
-  <!-- Frame -->
-  <rect width="1000" height="560" rx="14" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-  <rect width="1000" height="42" rx="14" fill="#1e293b"/>
-  <rect y="30" width="1000" height="12" fill="#1e293b"/>
-  <circle cx="22" cy="21" r="5" fill="#ef4444"/>
-  <circle cx="38" cy="21" r="5" fill="#f59e0b"/>
-  <circle cx="54" cy="21" r="5" fill="#10b981"/>
-  <text x="500" y="25" fill="#a78bfa" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">🤖 Assistant Bancaire Agentique IA — Spring AI &amp; Model Context Protocol (:8084)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="100%" height="100%">
+  <defs>
+    <style>
+      .code { font-family: 'SF Mono', Consolas, 'Courier New', monospace; font-size: 12px; }
+      .lbl { font-family: sans-serif; font-size: 13px; font-weight: 700; }
+      .bubble { font-family: sans-serif; font-size: 13px; }
+    </style>
+  </defs>
 
-  <!-- Chat container -->
-  <rect x="30" y="60" width="940" height="480" rx="10" fill="#182234" stroke="#1e293b"/>
+  <rect width="1100" height="620" fill="#f8fafc" />
+  <rect x="25" y="20" width="1050" height="580" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
 
-  <!-- Message 1: User -->
-  <rect x="420" y="80" width="530" height="44" rx="8" fill="#2563eb"/>
-  <text x="435" y="106" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="12">👤 Bonjour, quel est le solde de mon compte 11111111-1111-1111-1111-111111111111 ?</text>
+  <rect x="25" y="20" width="1050" height="45" rx="10" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <circle cx="50" cy="42" r="6" fill="#ef4444"/>
+  <circle cx="70" cy="42" r="6" fill="#f59e0b"/>
+  <circle cx="90" cy="42" r="6" fill="#10b981"/>
+  <text x="120" y="47" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f172a">Spring AI Agentic Banking Assistant - Model Context Protocol (MCP)</text>
 
-  <!-- Message 1: Bot response -->
-  <rect x="50" y="135" width="620" height="85" rx="8" fill="#1e293b" stroke="#3b82f6"/>
-  <text x="65" y="158" fill="#38bdf8" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold">🤖 Assistant IA (Tool exécuté: get_account_by_id via MCP) :</text>
-  <text x="65" y="180" fill="#f8fafc" font-family="-apple-system, sans-serif" font-size="12">Voici les détails de votre compte bancaire :</text>
-  <text x="65" y="200" fill="#34d399" font-family="monospace" font-size="11">Solde disponible : 5 000.00 EUR | Statut : ACTIF | Réf : CUST-1001</text>
+  <rect x="50" y="85" width="550" height="485" rx="6" fill="#fafafa" stroke="#cbd5e1"/>
+  <rect x="50" y="85" width="550" height="36" rx="6" fill="#eff6ff"/>
+  <text x="70" y="108" class="lbl" fill="#1e40af">Session Conversationnelle Client</text>
 
-  <!-- Message 2: User Transfer -->
-  <rect x="340" y="235" width="610" height="44" rx="8" fill="#2563eb"/>
-  <text x="355" y="261" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="12">👤 Peux-tu faire un virement de 100 EUR de ce compte vers 22222222-2222-2222-2222-222222222222 ?</text>
+  <rect x="180" y="135" width="400" height="55" rx="8" fill="#2563eb"/>
+  <text x="200" y="160" class="bubble" fill="#ffffff" font-weight="500">Quel est le solde de mon compte principal ?</text>
+  <text x="200" y="178" font-family="sans-serif" font-size="10" fill="#bfdbfe">Utilisateur - 10:48</text>
 
-  <!-- Message 2: Bot response -->
-  <rect x="50" y="290" width="700" height="110" rx="8" fill="#1e293b" stroke="#10b981"/>
-  <text x="65" y="313" fill="#34d399" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold">🤖 Assistant IA (Tool exécuté: transfer_funds via MCP sur Transaction-Service) :</text>
-  <text x="65" y="335" fill="#f8fafc" font-family="-apple-system, sans-serif" font-size="12">✅ Virement de 100.00 EUR exécuté avec succès !</text>
-  <text x="65" y="355" fill="#94a3b8" font-family="monospace" font-size="11">• Débit émetteur (11111111) : Nouveau solde = 4 900.00 EUR</text>
-  <text x="65" y="373" fill="#94a3b8" font-family="monospace" font-size="11">• Crédit bénéficiaire (22222222) : Nouveau solde = 1 600.00 EUR</text>
-  <text x="65" y="391" fill="#a78bfa" font-family="monospace" font-size="11">• Événement Kafka émis sur topic bank.transactions.created</text>
+  <rect x="70" y="205" width="440" height="135" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="85" y="218" width="280" height="24" rx="4" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="95" y="234" class="code" fill="#1d4ed8" font-weight="600">Appel Tool MCP : get_account_balance</text>
+  <text x="85" y="265" class="bubble" fill="#0f172a">Votre compte principal (ref: CUST-ADRIA-001)</text>
+  <text x="85" y="285" class="bubble" fill="#0f172a">presente un solde de 2 500,00 EUR.</text>
+  <text x="85" y="305" class="bubble" fill="#059669" font-weight="600">Statut du compte : ACTIVE.</text>
+  <text x="85" y="325" font-family="sans-serif" font-size="10" fill="#94a3b8">Assistant IA - 10:48</text>
 
-  <!-- Input bar mockup -->
-  <rect x="50" y="480" width="800" height="42" rx="8" fill="#0f172a" stroke="#475569"/>
-  <text x="70" y="506" fill="#64748b" font-family="-apple-system, sans-serif" font-size="12">Posez une question ou demandez une opération bancaire...</text>
-  <rect x="860" y="480" width="90" height="42" rx="8" fill="#3b82f6"/>
-  <text x="905" y="506" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Envoyer</text>
+  <rect x="180" y="355" width="400" height="55" rx="8" fill="#2563eb"/>
+  <text x="200" y="380" class="bubble" fill="#ffffff" font-weight="500">Effectue un virement de 250 EUR vers CUST-002</text>
+  <text x="200" y="398" font-family="sans-serif" font-size="10" fill="#bfdbfe">Utilisateur - 10:49</text>
+
+  <rect x="70" y="425" width="440" height="130" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="85" y="438" width="280" height="24" rx="4" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="95" y="454" class="code" fill="#15803d" font-weight="600">Appel Tool MCP : execute_transfer</text>
+  <text x="85" y="485" class="bubble" fill="#0f172a">Virement de 250,00 EUR execute avec succes !</text>
+  <text x="85" y="505" class="bubble" fill="#0f172a">Nouveau solde : 2 250,00 EUR.</text>
+  <text x="85" y="525" class="bubble" fill="#d97706">Evenement Kafka publie sur le topic.</text>
+  <text x="85" y="543" font-family="sans-serif" font-size="10" fill="#94a3b8">Assistant IA - 10:49</text>
+
+  <rect x="630" y="85" width="415" height="485" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="630" y="85" width="415" height="36" rx="6" fill="#f1f5f9"/>
+  <text x="650" y="108" class="lbl">Orchestration &amp; Architecture MCP</text>
+
+  <rect x="650" y="135" width="375" height="110" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="665" y="160" font-family="sans-serif" font-size="12" font-weight="600" fill="#0f172a">Moteur LLM &amp; Tools :</text>
+  <text x="665" y="185" class="code" fill="#475569">- Framework: Spring AI (McpClientService)</text>
+  <text x="665" y="205" class="code" fill="#475569">- Protocole: Model Context Protocol (v2.0)</text>
+  <text x="665" y="225" class="code" fill="#475569">- Format d echange: JSON-RPC over HTTP</text>
+
+  <rect x="650" y="260" width="375" height="140" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="665" y="285" font-family="sans-serif" font-size="12" font-weight="600" fill="#0f172a">Tools MCP Disponibles :</text>
+  <text x="665" y="310" class="code" fill="#2563eb">1. get_account_balance(accountId)</text>
+  <text x="665" y="335" class="code" fill="#2563eb">2. execute_transfer(src, dst, amount, curr)</text>
+  <text x="665" y="360" class="code" fill="#2563eb">3. list_customer_accounts(customerId)</text>
+  <text x="665" y="385" class="code" fill="#2563eb">4. get_account_transactions(accountId)</text>
+
+  <rect x="650" y="415" width="375" height="140" rx="4" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="665" y="440" font-family="sans-serif" font-size="12" font-weight="600" fill="#15803d">Clients Supportes :</text>
+  <text x="665" y="465" font-family="sans-serif" font-size="12" fill="#334155">- Interface Web Angular 18 (integree)</text>
+  <text x="665" y="490" font-family="sans-serif" font-size="12" fill="#334155">- Client Bot Telegram (Webhook / Polling)</text>
+  <text x="665" y="515" font-family="sans-serif" font-size="12" fill="#334155">- Client Bot Discord (Gateway API)</text>
+  <text x="665" y="540" font-family="sans-serif" font-size="12" fill="#334155">- API REST standard (/api/chat/message)</text>
 </svg>
-

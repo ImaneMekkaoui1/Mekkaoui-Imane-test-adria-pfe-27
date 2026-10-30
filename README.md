@@ -1,4 +1,4 @@
-# 🏦 Plateforme Bancaire Microservices, IA Agentique & EDA
+# Plateforme Bancaire Microservices, IA Agentique & EDA
 
 [![Java](https://img.shields.io/badge/Java-21%20LTS-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
@@ -9,31 +9,34 @@
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-8A2BE2?style=for-the-badge)](https://modelcontextprotocol.io/)
 [![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-> **Épreuve Technique de Sélection — PFE 2026 ADRIA Business & Technology**  
-> **Auteur :** Imane Mekkaoui  
-> **Dépôt GitHub :** `Mekkaoui-Imane-test-adria-pfe-27`  
-> **Périmètre réalisé :** Parties A, B, C, D, E, F, G (Client Web Angular Clair) & DevOps (Partie I)
+> **Épreuve Technique de Sélection — PFE 2026 ADRIA Business & Technology** 
+> **Auteur :** Imane Mekkaoui 
+> **Dépôt GitHub :** `Mekkaoui-Imane-test-adria-pfe-27` 
+> **Périmètre réalisé :** Parties A, B, C, D, E, F, G (Client Web Angular Clair), H (IA Détection de Fraude Python) & I (DevOps)  
+> **Rapport d'Architecture :** [`RAPPORT_ARCHITECTURE.md`](RAPPORT_ARCHITECTURE.md) (Rapport PDF déposé sur Classroom)
 
 ---
 
-## 📑 Sommaire
+## Sommaire
 
-1. [Contexte Métier & Objectifs](#-contexte-métier--objectifs)
-2. [Schéma d'Architecture Globale](#-schéma-darchitecture-globale)
-3. [Client Web Angular (Partie G — Thème Clair & Moderne)](#-client-web-angular-partie-g--thème-clair--moderne)
-4. [Diagramme de Classes Métier](#-diagramme-de-classes-métier)
-5. [Cartographie des Microservices & Service Discovery](#-cartographie-des-microservices--service-discovery)
-6. [Respect Strict de la Séparation des 6 Couches](#-respect-strict-de-la-séparation-des-6-couches)
-7. [Règles Métier, OpenFeign & Tolérance aux Pannes Resilience4J](#-règles-métier-openfeign--tolérance-aux-pannes-resilience4j)
-8. [Assistant Chatbot IA Agentique & Protocole MCP](#-assistant-chatbot-ia-agentique--protocole-mcp)
-9. [Échanges Asynchrones Event-Driven avec Kafka & Audit](#-échanges-asynchrones-event-driven-avec-kafka--audit)
-10. [Guide de Démarrage & Validation des Tests](#-guide-de-démarrage--validation-des-tests)
-11. [Guide Exhaustif des Tests & Captures d'Écran](#-guide-exhaustif-des-tests--captures-décran)
-12. [Pipeline CI/CD GitHub Actions](#-pipeline-cicd-github-actions)
+1. [Contexte Métier & Objectifs](#contexte-métier--objectifs)
+2. [Schéma d'Architecture Globale](#schéma-darchitecture-globale)
+3. [Client Web Angular (Partie G — Thème Clair & Moderne)](#client-web-angular-partie-g--thème-clair--moderne)
+4. [Diagramme de Classes Métier](#diagramme-de-classes-métier)
+5. [Cartographie des Microservices & Service Discovery](#cartographie-des-microservices--service-discovery)
+6. [Respect Strict de la Séparation des 6 Couches](#respect-strict-de-la-séparation-des-6-couches)
+7. [Règles Métier, OpenFeign & Tolérance aux Pannes Resilience4J](#règles-métier-openfeign--tolérance-aux-pannes-resilience4j)
+8. [Assistant Chatbot IA Agentique & Protocole MCP](#assistant-chatbot-ia-agentique--protocole-mcp)
+9. [Échanges Asynchrones Event-Driven avec Kafka & Audit](#échanges-asynchrones-event-driven-avec-kafka--audit)
+10. [Intelligence Artificielle avec Python : Détection de Fraude (Partie H)](#intelligence-artificielle-avec-python--détection-de-fraude-partie-h)
+11. [Guide de Démarrage & Validation des Tests](#guide-de-démarrage--validation-des-tests)
+12. [Guide Exhaustif des Tests & Captures d'Écran](#guide-exhaustif-des-tests--captures-décran)
+13. [Pipeline CI/CD GitHub Actions & DevOps (Partie I)](#pipeline-cicd-github-actions--devops-partie-i)
+14. [Rapport d'Architecture](#rapport-darchitecture)
 
 ---
 
-## 🎯 Contexte Métier & Objectifs
+## Contexte Métier & Objectifs
 
 La banque souhaite mettre en place une plateforme distribuée hautement disponible permettant de :
 - Consulter et gérer les comptes bancaires (CRUD, gestion des statuts `ACTIVE` / `BLOCKED`, devises et solde).
@@ -45,105 +48,105 @@ La banque souhaite mettre en place une plateforme distribuée hautement disponib
 
 ---
 
-## 🏛️ Schéma d'Architecture Globale
+## Schéma d'Architecture Globale
 
 ![Schéma d'Architecture Globale](docs/screenshots/01-architecture-microservices.svg)
 
 ```mermaid
 flowchart TB
-    subgraph Clients["Canaux d'Accès & Clients"]
-        WEB["🌐 Interface Web Angular (:4200)"]
-        MOB["📱 Client Mobile (Flutter)"]
-        TG["💬 Bot Telegram / Discord"]
-        REST_CLI["💻 Client HTTP / REST (Postman, cURL)"]
-    end
+ subgraph Clients["Canaux d'Accès & Clients"]
+ WEB[" Interface Web Angular (:4200)"]
+ MOB[" Client Mobile (Flutter)"]
+ TG[" Bot Telegram / Discord"]
+ REST_CLI[" Client HTTP / REST (Postman, cURL)"]
+ end
 
-    subgraph Tech_Layer["Socle Technique Spring Cloud"]
-        GW["🚪 Spring Cloud Gateway\n(Port: 8080)"]
-        EUR["🔍 Eureka Discovery Server\n(Port: 8761)"]
-        CONF["⚙️ Spring Cloud Config Server\n(Port: 8888)\nbank.transaction.max-amount=1000"]
-    end
+ subgraph Tech_Layer["Socle Technique Spring Cloud"]
+ GW[" Spring Cloud Gateway\n(Port: 8080)"]
+ EUR[" Eureka Discovery Server\n(Port: 8761)"]
+ CONF[" Spring Cloud Config Server\n(Port: 8888)\nbank.transaction.max-amount=1000"]
+ end
 
-    subgraph AI_Layer["Couche IA & Assistant Agentique"]
-        CHAT["🤖 Chatbot-Service (Port: 8084)\nSpring AI + Client MCP"]
-    end
+ subgraph AI_Layer["Couche IA & Assistant Agentique"]
+ CHAT[" Chatbot-Service (Port: 8084)\nSpring AI + Client MCP"]
+ end
 
-    subgraph Business_Layer["Microservices Métier"]
-        direction TB
-        subgraph ACC_SRV["🏦 Account-Service (Port: 8081)"]
-            ACC_REST["REST Controller (/api/accounts)"]
-            ACC_GQL["GraphQL (/graphql)"]
-            ACC_MCP["MCP Server (/mcp, /api/mcp/tools)"]
-            ACC_SERVICE["AccountService (Métier)"]
-            ACC_REPO["AccountRepository (Spring Data JPA)"]
-            ACC_DB[("H2 Database\naccountdb")]
+ subgraph Business_Layer["Microservices Métier"]
+ direction TB
+ subgraph ACC_SRV[" Account-Service (Port: 8081)"]
+ ACC_REST["REST Controller (/api/accounts)"]
+ ACC_GQL["GraphQL (/graphql)"]
+ ACC_MCP["MCP Server (/mcp, /api/mcp/tools)"]
+ ACC_SERVICE["AccountService (Métier)"]
+ ACC_REPO["AccountRepository (Spring Data JPA)"]
+ ACC_DB[("H2 Database\naccountdb")]
 
-            ACC_REST --> ACC_SERVICE
-            ACC_GQL --> ACC_SERVICE
-            ACC_MCP --> ACC_SERVICE
-            ACC_SERVICE --> ACC_REPO
-            ACC_REPO --> ACC_DB
-        end
+ ACC_REST --> ACC_SERVICE
+ ACC_GQL --> ACC_SERVICE
+ ACC_MCP --> ACC_SERVICE
+ ACC_SERVICE --> ACC_REPO
+ ACC_REPO --> ACC_DB
+ end
 
-        subgraph TX_SRV["💳 Transaction-Service (Port: 8082)"]
-            TX_REST["REST Controller (/api/transactions)"]
-            TX_GQL["GraphQL (/graphql)"]
-            TX_MCP["MCP Server (/mcp, /api/mcp/tools)"]
-            TX_SERVICE["TransactionService (Métier)"]
-            TX_FEIGN["OpenFeign + Resilience4J\nCircuitBreaker & Fallback"]
-            TX_KAFKA_PROD["Kafka Producer\n(bank.transactions.created)"]
-            TX_REPO["TransactionRepository (Spring Data JPA)"]
-            TX_DB[("H2 Database\ntransactiondb")]
+ subgraph TX_SRV[" Transaction-Service (Port: 8082)"]
+ TX_REST["REST Controller (/api/transactions)"]
+ TX_GQL["GraphQL (/graphql)"]
+ TX_MCP["MCP Server (/mcp, /api/mcp/tools)"]
+ TX_SERVICE["TransactionService (Métier)"]
+ TX_FEIGN["OpenFeign + Resilience4J\nCircuitBreaker & Fallback"]
+ TX_KAFKA_PROD["Kafka Producer\n(bank.transactions.created)"]
+ TX_REPO["TransactionRepository (Spring Data JPA)"]
+ TX_DB[("H2 Database\ntransactiondb")]
 
-            TX_REST --> TX_SERVICE
-            TX_GQL --> TX_SERVICE
-            TX_MCP --> TX_SERVICE
-            TX_SERVICE --> TX_REPO
-            TX_REPO --> TX_DB
-            TX_SERVICE --> TX_FEIGN
-            TX_SERVICE --> TX_KAFKA_PROD
-        end
-    end
+ TX_REST --> TX_SERVICE
+ TX_GQL --> TX_SERVICE
+ TX_MCP --> TX_SERVICE
+ TX_SERVICE --> TX_REPO
+ TX_REPO --> TX_DB
+ TX_SERVICE --> TX_FEIGN
+ TX_SERVICE --> TX_KAFKA_PROD
+ end
+ end
 
-    subgraph Kafka_Layer["Architecture Événementielle (EDA)"]
-        TOPIC[["📨 Topic Kafka: bank.transactions.created\n(Clé: accountId)"]]
-        AUDIT_SRV["🛡️ Audit-Service (Port: 8083)\nKafka Consumer (audit-group)\nJournalisation & Audit Trail"]
-        AUDIT_DB[("H2 Database\nauditdb")]
-    end
+ subgraph Kafka_Layer["Architecture Événementielle (EDA)"]
+ TOPIC[[" Topic Kafka: bank.transactions.created\n(Clé: accountId)"]]
+ AUDIT_SRV[" Audit-Service (Port: 8083)\nKafka Consumer (audit-group)\nJournalisation & Audit Trail"]
+ AUDIT_DB[("H2 Database\nauditdb")]
+ end
 
-    %% Flux réseau
-    Clients --> GW
-    GW --> ACC_SRV
-    GW --> TX_SRV
-    GW --> CHAT
-    GW --> AUDIT_SRV
+ %% Flux réseau
+ Clients --> GW
+ GW --> ACC_SRV
+ GW --> TX_SRV
+ GW --> CHAT
+ GW --> AUDIT_SRV
 
-    %% Découverte & Configuration
-    ACC_SRV -.-> EUR
-    TX_SRV -.-> EUR
-    GW -.-> EUR
-    CHAT -.-> EUR
-    AUDIT_SRV -.-> EUR
+ %% Découverte & Configuration
+ ACC_SRV -.-> EUR
+ TX_SRV -.-> EUR
+ GW -.-> EUR
+ CHAT -.-> EUR
+ AUDIT_SRV -.-> EUR
 
-    ACC_SRV -.-> CONF
-    TX_SRV -.-> CONF
+ ACC_SRV -.-> CONF
+ TX_SRV -.-> CONF
 
-    %% Communication inter-microservices
-    TX_FEIGN -- "GET /api/accounts/{id}\nPUT /api/accounts/{id}/balance" --> ACC_SRV
+ %% Communication inter-microservices
+ TX_FEIGN -- "GET /api/accounts/{id}\nPUT /api/accounts/{id}/balance" --> ACC_SRV
 
-    %% Appels MCP depuis l'Agent IA
-    CHAT -- "tools/call (MCP JSON-RPC)" --> ACC_MCP
-    CHAT -- "tools/call (MCP JSON-RPC)" --> TX_MCP
+ %% Appels MCP depuis l'Agent IA
+ CHAT -- "tools/call (MCP JSON-RPC)" --> ACC_MCP
+ CHAT -- "tools/call (MCP JSON-RPC)" --> TX_MCP
 
-    %% Streaming d'événements
-    TX_KAFKA_PROD -- "Publication TransactionCreatedEvent" --> TOPIC
-    TOPIC --> AUDIT_SRV
-    AUDIT_SRV --> AUDIT_DB
+ %% Streaming d'événements
+ TX_KAFKA_PROD -- "Publication TransactionCreatedEvent" --> TOPIC
+ TOPIC --> AUDIT_SRV
+ AUDIT_SRV --> AUDIT_DB
 ```
 
 ---
 
-## 🌐 Client Web Angular (Partie G — Thème Clair & Moderne)
+## Client Web Angular (Partie G — Thème Clair & Moderne)
 
 Un client Web Angular 18 complet et réactif a été développé dans le module [`frontend-angular/`](frontend-angular/) avec un **thème clair, épuré et lumineux** (fond blanc ardoise, cartes contrastées, badges statut et composants rapides) :
 
@@ -165,110 +168,110 @@ npm start
 
 ---
 
-## 📊 Diagramme de Classes Métier
+## Diagramme de Classes Métier
 
 ```mermaid
 classDiagram
-    direction TB
+ direction TB
 
-    class AccountStatus {
-        <<enumeration>>
-        ACTIVE
-        BLOCKED
-    }
+ class AccountStatus {
+ <<enumeration>>
+ ACTIVE
+ BLOCKED
+ }
 
-    class BankAccount {
-        -UUID id
-        -String customerReference
-        -AccountStatus status
-        -String currency
-        -double balance
-        +prePersist()
-    }
+ class BankAccount {
+ -UUID id
+ -String customerReference
+ -AccountStatus status
+ -String currency
+ -double balance
+ +prePersist()
+ }
 
-    class AccountDTO {
-        <<record>>
-        +UUID id
-        +String customerReference
-        +AccountStatus status
-        +String currency
-        +double balance
-        +fromEntity(BankAccount) AccountDTO
-    }
+ class AccountDTO {
+ <<record>>
+ +UUID id
+ +String customerReference
+ +AccountStatus status
+ +String currency
+ +double balance
+ +fromEntity(BankAccount) AccountDTO
+ }
 
-    class BankTransaction {
-        -UUID id
-        -UUID accountId
-        -BigDecimal amount
-        -String currency
-        -String merchantCategory
-        -String country
-        -Instant createdAt
-        +prePersist()
-    }
+ class BankTransaction {
+ -UUID id
+ -UUID accountId
+ -BigDecimal amount
+ -String currency
+ -String merchantCategory
+ -String country
+ -Instant createdAt
+ +prePersist()
+ }
 
-    class TransactionDTO {
-        <<record>>
-        +UUID id
-        +UUID accountId
-        +BigDecimal amount
-        +String currency
-        +String merchantCategory
-        +String country
-        +Instant createdAt
-        +fromEntity(BankTransaction) TransactionDTO
-    }
+ class TransactionDTO {
+ <<record>>
+ +UUID id
+ +UUID accountId
+ +BigDecimal amount
+ +String currency
+ +String merchantCategory
+ +String country
+ +Instant createdAt
+ +fromEntity(BankTransaction) TransactionDTO
+ }
 
-    class TransferRequest {
-        <<record>>
-        +UUID sourceAccountId
-        +UUID targetAccountId
-        +BigDecimal amount
-        +String currency
-    }
+ class TransferRequest {
+ <<record>>
+ +UUID sourceAccountId
+ +UUID targetAccountId
+ +BigDecimal amount
+ +String currency
+ }
 
-    class TransferResult {
-        <<record>>
-        +UUID sourceTransactionId
-        +UUID targetTransactionId
-        +String status
-        +String message
-    }
+ class TransferResult {
+ <<record>>
+ +UUID sourceTransactionId
+ +UUID targetTransactionId
+ +String status
+ +String message
+ }
 
-    class TransactionCreatedEvent {
-        <<record>>
-        +UUID eventId
-        +String eventType
-        +UUID transactionId
-        +UUID accountId
-        +BigDecimal amount
-        +String currency
-        +Instant occurredAt
-        +of(BankTransaction) TransactionCreatedEvent
-    }
+ class TransactionCreatedEvent {
+ <<record>>
+ +UUID eventId
+ +String eventType
+ +UUID transactionId
+ +UUID accountId
+ +BigDecimal amount
+ +String currency
+ +Instant occurredAt
+ +of(BankTransaction) TransactionCreatedEvent
+ }
 
-    class AuditEvent {
-        -UUID id
-        -UUID eventId
-        -String eventType
-        -UUID transactionId
-        -UUID accountId
-        -BigDecimal amount
-        -String currency
-        -Instant occurredAt
-        -Instant receivedAt
-    }
+ class AuditEvent {
+ -UUID id
+ -UUID eventId
+ -String eventType
+ -UUID transactionId
+ -UUID accountId
+ -BigDecimal amount
+ -String currency
+ -Instant occurredAt
+ -Instant receivedAt
+ }
 
-    BankAccount "1" --> "1" AccountStatus
-    BankAccount ..> AccountDTO : mapping
-    BankTransaction ..> TransactionDTO : mapping
-    BankTransaction ..> TransactionCreatedEvent : produit
-    TransactionCreatedEvent ..> AuditEvent : persisté par AuditService
+ BankAccount "1" --> "1" AccountStatus
+ BankAccount ..> AccountDTO : mapping
+ BankTransaction ..> TransactionDTO : mapping
+ BankTransaction ..> TransactionCreatedEvent : produit
+ TransactionCreatedEvent ..> AuditEvent : persisté par AuditService
 ```
 
 ---
 
-## 🗺️ Cartographie des Microservices & Service Discovery
+## Cartographie des Microservices & Service Discovery
 
 ![Eureka Dashboard](docs/screenshots/02-eureka-dashboard.svg)
 
@@ -285,24 +288,24 @@ classDiagram
 
 ---
 
-## 🧱 Respect Strict de la Séparation des 6 Couches
+## Respect Strict de la Séparation des 6 Couches
 
 Chacun des microservices fonctionnels (`account-service` et `transaction-service`) implémente la séparation en 6 couches exigée par le sujet :
 
 ```text
-├── domain/            <- Entités JPA, DTOs (Records Java 21), requêtes validées (@Valid), Enums, Exceptions métier
-├── repository/        <- Interfaces Spring Data JPA
-├── service/           <- Logique métier centrale, règles de validation, clients OpenFeign et producteurs d'événements
-├── web/rest/          <- Contrôleurs REST (@RestController) et gestionnaire global d'exceptions (@RestControllerAdvice)
-├── web/graphql/       <- Contrôleurs GraphQL (@Controller, @QueryMapping, @MutationMapping) et schema.graphqls
-└── mcp/               <- Serveur et outils Model Context Protocol (Anthropic MCP standard) JSON-RPC 2.0 & endpoints REST
+├── domain/ <- Entités JPA, DTOs (Records Java 21), requêtes validées (@Valid), Enums, Exceptions métier
+├── repository/ <- Interfaces Spring Data JPA
+├── service/ <- Logique métier centrale, règles de validation, clients OpenFeign et producteurs d'événements
+├── web/rest/ <- Contrôleurs REST (@RestController) et gestionnaire global d'exceptions (@RestControllerAdvice)
+├── web/graphql/ <- Contrôleurs GraphQL (@Controller, @QueryMapping, @MutationMapping) et schema.graphqls
+└── mcp/ <- Serveur et outils Model Context Protocol (Anthropic MCP standard) JSON-RPC 2.0 & endpoints REST
 ```
 
 > **Contrainte respectée à 100% :** Les contrôleurs REST, GraphQL et MCP appellent **la même et unique couche service**, garantissant la cohérence absolue des règles de gestion et la non-duplication de code.
 
 ---
 
-## 🛡️ Règles Métier, OpenFeign & Tolérance aux Pannes Resilience4J
+## Règles Métier, OpenFeign & Tolérance aux Pannes Resilience4J
 
 ![Transaction OpenFeign & Resilience4J](docs/screenshots/06-transaction-feign-resilience4j.svg)
 
@@ -321,53 +324,53 @@ Chacun des microservices fonctionnels (`account-service` et `transaction-service
 
 ---
 
-## 🤖 Assistant Chatbot IA Agentique & Protocole MCP
+## Assistant Chatbot IA Agentique & Protocole MCP
 
 ![Assistant Chatbot IA Agentique](docs/screenshots/08-chatbot-agent-chat.svg)
 
 Le microservice `chatbot-service` (Port `8084`) fournit un agent IA autonome :
 - **Client MCP :** Se connecte aux serveurs MCP exposés par `account-service` et `transaction-service`.
 - **Catalogue des outils MCP connectés :**
-  - `get_account_by_id` : Consultation des détails et solde d'un compte.
-  - `list_all_accounts` : Récupération de tous les comptes bancaires.
-  - `create_bank_account` : Ouverture d'un compte bancaire.
-  - `update_account_balance` : Crédit ou débit sur un compte.
-  - `change_account_status` : Blocage / activation d'un compte.
-  - `create_transaction` : Exécution d'une transaction bancaire.
-  - `transfer_funds` : Virement bancaire entre deux comptes.
+ - `get_account_by_id` : Consultation des détails et solde d'un compte.
+ - `list_all_accounts` : Récupération de tous les comptes bancaires.
+ - `create_bank_account` : Ouverture d'un compte bancaire.
+ - `update_account_balance` : Crédit ou débit sur un compte.
+ - `change_account_status` : Blocage / activation d'un compte.
+ - `create_transaction` : Exécution d'une transaction bancaire.
+ - `transfer_funds` : Virement bancaire entre deux comptes.
 - **Résolution en langage naturel (Natural Language Processing) :**
-  L'agent comprend les requêtes utilisateurs écrites en langage naturel, extrait les paramètres (UUIDs, montants, devises), exécute l'outil MCP correspondant et retourne une réponse claire et sécurisée.
+ L'agent comprend les requêtes utilisateurs écrites en langage naturel, extrait les paramètres (UUIDs, montants, devises), exécute l'outil MCP correspondant et retourne une réponse claire et sécurisée.
 - Compatible avec les clients Web Angular, Postman, Telegram et Discord.
 
 ---
 
-## 📨 Échanges Asynchrones Event-Driven avec Kafka & Audit
+## Échanges Asynchrones Event-Driven avec Kafka & Audit
 
 ![Journalisation Kafka & Audit Service](docs/screenshots/07-kafka-event-audit.svg)
 
 1. **Publication de l'événement (`transaction-service`) :**
-   - Topic : `bank.transactions.created`
-   - Clé du message : `accountId` (garantit l'ordre des transactions par compte dans les partitions Kafka).
-   - Format minimal de l'événement conforme au sujet :
-     ```json
-     {
-       "eventId": "e9a0846d-a1c2-48f8-b57e-399d8b375e21",
-       "eventType": "TransactionCreated",
-       "transactionId": "b1b6d132-0545-420a-8bf8-2fa521f1d198",
-       "accountId": "11111111-1111-1111-1111-111111111111",
-       "amount": 250.00,
-       "currency": "EUR",
-       "occurredAt": "2026-01-15T10:30:00Z"
-     }
-     ```
+ - Topic : `bank.transactions.created`
+ - Clé du message : `accountId` (garantit l'ordre des transactions par compte dans les partitions Kafka).
+ - Format minimal de l'événement conforme au sujet :
+ ```json
+ {
+ "eventId": "e9a0846d-a1c2-48f8-b57e-399d8b375e21",
+ "eventType": "TransactionCreated",
+ "transactionId": "b1b6d132-0545-420a-8bf8-2fa521f1d198",
+ "accountId": "11111111-1111-1111-1111-111111111111",
+ "amount": 250.00,
+ "currency": "EUR",
+ "occurredAt": "2026-01-15T10:30:00Z"
+ }
+ ```
 2. **Consommation & Journalisation (`audit-service`) :**
-   - `@KafkaListener` avec le groupe de consommateurs `audit-group`.
-   - Journalisation structurée dans les logs d'audit.
-   - Enregistrement dans la table `audit_events` **sans modifier les données bancaires**.
+ - `@KafkaListener` avec le groupe de consommateurs `audit-group`.
+ - Journalisation structurée dans les logs d'audit.
+ - Enregistrement dans la table `audit_events` **sans modifier les données bancaires**.
 
 ---
 
-## 🚀 Guide de Démarrage & Validation des Tests
+## Guide de Démarrage & Validation des Tests
 
 ![Maven Build Success](docs/screenshots/09-maven-build-success.svg)
 
@@ -384,7 +387,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 mvn clean test
 ```
-> ✅ **100% des tests unitaires et d'intégration passent avec succès (`BUILD SUCCESS`).**
+> **100% des tests unitaires et d'intégration passent avec succès (`BUILD SUCCESS`).**
 
 ### 2. Démarrage du frontend Angular (Thème clair)
 ```bash
@@ -404,12 +407,12 @@ docker-compose logs -f
 
 ---
 
-## 🧪 Guide Exhaustif des Tests & Captures d'Écran
+## Guide Exhaustif des Tests & Captures d'Écran
 
 Des comptes de test prédéfinis sont injectés automatiquement au démarrage :
 - Compte 1 (Actif, 5000 EUR) : `11111111-1111-1111-1111-111111111111`
 - Compte 2 (Actif, 1500 EUR) : `22222222-2222-2222-2222-222222222222`
-- Compte 3 (Bloqué, 200 EUR)  : `99999999-9999-9999-9999-999999999999`
+- Compte 3 (Bloqué, 200 EUR) : `99999999-9999-9999-9999-999999999999`
 
 ---
 
@@ -420,12 +423,12 @@ Des comptes de test prédéfinis sont injectés automatiquement au démarrage :
 #### 1. Créer un nouveau compte bancaire
 ```bash
 curl -i -X POST http://localhost:8081/api/accounts \
-  -H "Content-Type: application/json" \
-  -d '{
-    "customerReference": "CUST-IMANE-2026",
-    "currency": "EUR",
-    "initialBalance": 3000.00
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "customerReference": "CUST-IMANE-2026",
+ "currency": "EUR",
+ "initialBalance": 3000.00
+ }'
 ```
 
 #### 2. Consulter le solde d'un compte
@@ -436,39 +439,39 @@ curl -i http://localhost:8081/api/accounts/11111111-1111-1111-1111-111111111111
 #### 3. Effectuer une transaction (débit de 250 EUR)
 ```bash
 curl -i -X POST http://localhost:8082/api/transactions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "accountId": "11111111-1111-1111-1111-111111111111",
-    "amount": 250.00,
-    "currency": "EUR",
-    "merchantCategory": "SUPERMARKET",
-    "country": "MA"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "accountId": "11111111-1111-1111-1111-111111111111",
+ "amount": 250.00,
+ "currency": "EUR",
+ "merchantCategory": "SUPERMARKET",
+ "country": "MA"
+ }'
 ```
 
 #### 4. Effectuer un virement inter-comptes (100 EUR)
 ```bash
 curl -i -X POST http://localhost:8082/api/transactions/transfer \
-  -H "Content-Type: application/json" \
-  -d '{
-    "sourceAccountId": "11111111-1111-1111-1111-111111111111",
-    "targetAccountId": "22222222-2222-2222-2222-222222222222",
-    "amount": 100.00,
-    "currency": "EUR"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "sourceAccountId": "11111111-1111-1111-1111-111111111111",
+ "targetAccountId": "22222222-2222-2222-2222-222222222222",
+ "amount": 100.00,
+ "currency": "EUR"
+ }'
 ```
 
 #### 5. Test de dépassement de plafond (Doit être rejeté car montant > 1000 EUR)
 ```bash
 curl -i -X POST http://localhost:8082/api/transactions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "accountId": "11111111-1111-1111-1111-111111111111",
-    "amount": 1500.00,
-    "currency": "EUR",
-    "merchantCategory": "LUXURY",
-    "country": "FR"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "accountId": "11111111-1111-1111-1111-111111111111",
+ "amount": 1500.00,
+ "currency": "EUR",
+ "merchantCategory": "LUXURY",
+ "country": "FR"
+ }'
 ```
 
 ---
@@ -480,19 +483,19 @@ curl -i -X POST http://localhost:8082/api/transactions \
 #### 1. Consulter tous les comptes via GraphQL
 ```bash
 curl -X POST http://localhost:8081/graphql \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "{ allAccounts { id customerReference currency balance status } }"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "query": "{ allAccounts { id customerReference currency balance status } }"
+ }'
 ```
 
 #### 2. Créer une transaction via GraphQL
 ```bash
 curl -X POST http://localhost:8082/graphql \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "mutation { createTransaction(input: { accountId: \"11111111-1111-1111-1111-111111111111\", amount: 45.0, currency: \"EUR\", merchantCategory: \"RESTAURANT\" }) { id amount currency createdAt } }"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "query": "mutation { createTransaction(input: { accountId: \"11111111-1111-1111-1111-111111111111\", amount: 45.0, currency: \"EUR\", merchantCategory: \"RESTAURANT\" }) { id amount currency createdAt } }"
+ }'
 ```
 
 ---
@@ -509,18 +512,18 @@ curl http://localhost:8081/api/mcp/tools
 #### 2. Invoquer un tool via JSON-RPC 2.0 (Spécification officielle Anthropic MCP)
 ```bash
 curl -X POST http://localhost:8081/mcp \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "tools/call",
-    "params": {
-      "name": "get_account_by_id",
-      "arguments": {
-        "id": "11111111-1111-1111-1111-111111111111"
-      }
-    }
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "tools/call",
+ "params": {
+ "name": "get_account_by_id",
+ "arguments": {
+ "id": "11111111-1111-1111-1111-111111111111"
+ }
+ }
+ }'
 ```
 
 ---
@@ -530,21 +533,21 @@ curl -X POST http://localhost:8081/mcp \
 #### 1. Consultation de solde en langage naturel
 ```bash
 curl -X POST http://localhost:8084/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "Quel est le solde de mon compte 11111111-1111-1111-1111-111111111111 ?",
-    "sessionId": "session-imane-1"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "message": "Quel est le solde de mon compte 11111111-1111-1111-1111-111111111111 ?",
+ "sessionId": "session-imane-1"
+ }'
 ```
 
 #### 2. Virement inter-comptes en langage naturel
 ```bash
 curl -X POST http://localhost:8084/api/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "Effectuer un virement de 100 EUR depuis le compte 11111111-1111-1111-1111-111111111111 vers 22222222-2222-2222-2222-222222222222",
-    "sessionId": "session-imane-1"
-  }'
+ -H "Content-Type: application/json" \
+ -d '{
+ "message": "Effectuer un virement de 100 EUR depuis le compte 11111111-1111-1111-1111-111111111111 vers 22222222-2222-2222-2222-222222222222",
+ "sessionId": "session-imane-1"
+ }'
 ```
 
 #### 3. Découverte de tous les tools MCP agrégés
@@ -563,7 +566,7 @@ curl http://localhost:8083/api/audit/events
 
 ---
 
-## 🔄 Pipeline CI/CD GitHub Actions
+## Pipeline CI/CD GitHub Actions
 
 Le fichier [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) automatise l'intégralité du cycle DevOps :
 1. **Compilation & Tests** : Exécution de `mvn clean test` sous JDK 21.
@@ -574,8 +577,19 @@ Le fichier [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) automati
 
 ---
 
-## 👩‍💻 Auteur
 
-**Imane Mekkaoui**  
-Épreuve Technique de Sélection — Architecture Microservices, IA & Full-Stack (ADRIA 2026)  
+---
+
+## Rapport d'Architecture
+
+Le rapport technique d'architecture complet est consultable directement dans le référentiel :
+- Documentation détaillée : [`RAPPORT_ARCHITECTURE.md`](RAPPORT_ARCHITECTURE.md)
+- Le rapport au format PDF est déposé directement dans Classroom avec les captures d'écran des tests réalisés, conformément aux consignes de l'épreuve pratique.
+
+---
+
+## Auteur
+
+**Imane Mekkaoui** 
+Épreuve Technique de Sélection — Architecture Microservices, IA & Full-Stack (ADRIA 2026) 
 GitHub : [@ImaneMekkaoui1](https://github.com/ImaneMekkaoui1)

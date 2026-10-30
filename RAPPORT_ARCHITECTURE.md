@@ -1,7 +1,7 @@
 # PLATEFORME BANCAIRE MICROSERVICES - RAPPORT D'ARCHITECTURE ET DE CONCEPTION
 
-> **Épreuve Technique de Sélection — Architecture micro-services, IA et développement full-stack**  
-> **Réalisation : Parties A à F**  
+> **Épreuve Technique de Sélection — Architecture micro-services, IA et développement full-stack** 
+> **Réalisation : Parties A à F** 
 > **Auteur : Candidat Adria PFE 2026**
 
 ---
@@ -12,95 +12,95 @@ L'architecture est découpée en microservices métiers et techniques selon les 
 
 ```mermaid
 flowchart TB
-    subgraph Clients["Canaux Utilisateurs & Clients"]
-        WEB["🌐 Interface Web / Angular"]
-        MOB["📱 Client Mobile"]
-        TG["💬 Bot Telegram"]
-        DISC["🎮 Bot Discord"]
-        REST_CLI["💻 Client HTTP / REST (Postman/Curl)"]
-    end
+ subgraph Clients["Canaux Utilisateurs & Clients"]
+ WEB[" Interface Web / Angular"]
+ MOB[" Client Mobile"]
+ TG[" Bot Telegram"]
+ DISC[" Bot Discord"]
+ REST_CLI[" Client HTTP / REST (Postman/Curl)"]
+ end
 
-    subgraph Technical["Microservices Techniques"]
-        GW["🚪 Spring Cloud Gateway\n(Port: 8080)"]
-        EUR["🔍 Eureka Discovery Server\n(Port: 8761)"]
-        CONF["⚙️ Spring Cloud Config Server\n(Port: 8888)\nbank.transaction.max-amount=1000"]
-    end
+ subgraph Technical["Microservices Techniques"]
+ GW[" Spring Cloud Gateway\n(Port: 8080)"]
+ EUR[" Eureka Discovery Server\n(Port: 8761)"]
+ CONF[" Spring Cloud Config Server\n(Port: 8888)\nbank.transaction.max-amount=1000"]
+ end
 
-    subgraph AI_Layer["Couche IA & Assistant Agentique"]
-        CHAT["🤖 Chatbot Agentic Service\n(Port: 8084)\nSpring AI + MCP Client"]
-    end
+ subgraph AI_Layer["Couche IA & Assistant Agentique"]
+ CHAT[" Chatbot Agentic Service\n(Port: 8084)\nSpring AI + MCP Client"]
+ end
 
-    subgraph Business["Microservices Métier"]
-        direction TB
-        subgraph ACC_SRV["🏦 Account-Service (Port: 8081)"]
-            ACC_REST["REST Controller (/api/accounts)"]
-            ACC_GQL["GraphQL (/graphql)"]
-            ACC_MCP["MCP Server (/mcp)"]
-            ACC_SERVICE["AccountService"]
-            ACC_REPO["AccountRepository (JPA)"]
-            ACC_DB[("H2 Database\naccountdb")]
-            
-            ACC_REST --> ACC_SERVICE
-            ACC_GQL --> ACC_SERVICE
-            ACC_MCP --> ACC_SERVICE
-            ACC_SERVICE --> ACC_REPO
-            ACC_REPO --> ACC_DB
-        end
+ subgraph Business["Microservices Métier"]
+ direction TB
+ subgraph ACC_SRV[" Account-Service (Port: 8081)"]
+ ACC_REST["REST Controller (/api/accounts)"]
+ ACC_GQL["GraphQL (/graphql)"]
+ ACC_MCP["MCP Server (/mcp)"]
+ ACC_SERVICE["AccountService"]
+ ACC_REPO["AccountRepository (JPA)"]
+ ACC_DB[("H2 Database\naccountdb")]
+ 
+ ACC_REST --> ACC_SERVICE
+ ACC_GQL --> ACC_SERVICE
+ ACC_MCP --> ACC_SERVICE
+ ACC_SERVICE --> ACC_REPO
+ ACC_REPO --> ACC_DB
+ end
 
-        subgraph TX_SRV["💳 Transaction-Service (Port: 8082)"]
-            TX_REST["REST Controller (/api/transactions)"]
-            TX_GQL["GraphQL (/graphql)"]
-            TX_MCP["MCP Server (/mcp)"]
-            TX_SERVICE["TransactionService"]
-            TX_FEIGN["OpenFeign + Resilience4J\nCircuitBreaker & Fallback"]
-            TX_KAFKA_PROD["Kafka Event Producer"]
-            TX_REPO["TransactionRepository (JPA)"]
-            TX_DB[("H2 Database\ntransactiondb")]
+ subgraph TX_SRV[" Transaction-Service (Port: 8082)"]
+ TX_REST["REST Controller (/api/transactions)"]
+ TX_GQL["GraphQL (/graphql)"]
+ TX_MCP["MCP Server (/mcp)"]
+ TX_SERVICE["TransactionService"]
+ TX_FEIGN["OpenFeign + Resilience4J\nCircuitBreaker & Fallback"]
+ TX_KAFKA_PROD["Kafka Event Producer"]
+ TX_REPO["TransactionRepository (JPA)"]
+ TX_DB[("H2 Database\ntransactiondb")]
 
-            TX_REST --> TX_SERVICE
-            TX_GQL --> TX_SERVICE
-            TX_MCP --> TX_SERVICE
-            TX_SERVICE --> TX_REPO
-            TX_REPO --> TX_DB
-            TX_SERVICE --> TX_FEIGN
-            TX_SERVICE --> TX_KAFKA_PROD
-        end
-    end
+ TX_REST --> TX_SERVICE
+ TX_GQL --> TX_SERVICE
+ TX_MCP --> TX_SERVICE
+ TX_SERVICE --> TX_REPO
+ TX_REPO --> TX_DB
+ TX_SERVICE --> TX_FEIGN
+ TX_SERVICE --> TX_KAFKA_PROD
+ end
+ end
 
-    subgraph EventStreaming["Événements Asynchrones (Kafka)"]
-        TOPIC[["📨 Topic: bank.transactions.created\n(Key: accountId)"]]
-        AUDIT_SRV["🛡️ Audit-Service (Port: 8083)\nKafka Consumer (audit-group)\nJournalisation & Audit Trail"]
-        AUDIT_DB[("H2 Database\nauditdb")]
-    end
+ subgraph EventStreaming["Événements Asynchrones (Kafka)"]
+ TOPIC[[" Topic: bank.transactions.created\n(Key: accountId)"]]
+ AUDIT_SRV[" Audit-Service (Port: 8083)\nKafka Consumer (audit-group)\nJournalisation & Audit Trail"]
+ AUDIT_DB[("H2 Database\nauditdb")]
+ end
 
-    %% Interactions
-    Clients --> GW
-    GW --> ACC_SRV
-    GW --> TX_SRV
-    GW --> CHAT
-    GW --> AUDIT_SRV
+ %% Interactions
+ Clients --> GW
+ GW --> ACC_SRV
+ GW --> TX_SRV
+ GW --> CHAT
+ GW --> AUDIT_SRV
 
-    %% Discovery & Config
-    ACC_SRV -.-> EUR
-    TX_SRV -.-> EUR
-    GW -.-> EUR
-    CHAT -.-> EUR
-    AUDIT_SRV -.-> EUR
+ %% Discovery & Config
+ ACC_SRV -.-> EUR
+ TX_SRV -.-> EUR
+ GW -.-> EUR
+ CHAT -.-> EUR
+ AUDIT_SRV -.-> EUR
 
-    ACC_SRV -.-> CONF
-    TX_SRV -.-> CONF
+ ACC_SRV -.-> CONF
+ TX_SRV -.-> CONF
 
-    %% Inter-service Feign
-    TX_FEIGN -- "GET /api/accounts/{id}\nPUT /api/accounts/{id}/balance" --> ACC_SRV
+ %% Inter-service Feign
+ TX_FEIGN -- "GET /api/accounts/{id}\nPUT /api/accounts/{id}/balance" --> ACC_SRV
 
-    %% MCP Agent interaction
-    CHAT -- "tools/call (MCP JSON-RPC)" --> ACC_MCP
-    CHAT -- "tools/call (MCP JSON-RPC)" --> TX_MCP
+ %% MCP Agent interaction
+ CHAT -- "tools/call (MCP JSON-RPC)" --> ACC_MCP
+ CHAT -- "tools/call (MCP JSON-RPC)" --> TX_MCP
 
-    %% Kafka
-    TX_KAFKA_PROD -- "TransactionCreatedEvent" --> TOPIC
-    TOPIC --> AUDIT_SRV
-    AUDIT_SRV --> AUDIT_DB
+ %% Kafka
+ TX_KAFKA_PROD -- "TransactionCreatedEvent" --> TOPIC
+ TOPIC --> AUDIT_SRV
+ AUDIT_SRV --> AUDIT_DB
 ```
 
 ---
@@ -111,126 +111,126 @@ Le diagramme ci-dessous illustre le modèle objet et les contrats de données se
 
 ```mermaid
 classDiagram
-    direction TB
+ direction TB
 
-    class AccountStatus {
-        <<enumeration>>
-        ACTIVE
-        BLOCKED
-    }
+ class AccountStatus {
+ <<enumeration>>
+ ACTIVE
+ BLOCKED
+ }
 
-    class BankAccount {
-        -UUID id
-        -String customerReference
-        -AccountStatus status
-        -String currency
-        -double balance
-        +prePersist()
-    }
+ class BankAccount {
+ -UUID id
+ -String customerReference
+ -AccountStatus status
+ -String currency
+ -double balance
+ +prePersist()
+ }
 
-    class AccountDTO {
-        <<record>>
-        +UUID id
-        +String customerReference
-        +AccountStatus status
-        +String currency
-        +double balance
-    }
+ class AccountDTO {
+ <<record>>
+ +UUID id
+ +String customerReference
+ +AccountStatus status
+ +String currency
+ +double balance
+ }
 
-    class CreateAccountRequest {
-        <<record>>
-        +String customerReference
-        +String currency
-        +double initialBalance
-    }
+ class CreateAccountRequest {
+ <<record>>
+ +String customerReference
+ +String currency
+ +double initialBalance
+ }
 
-    class UpdateBalanceRequest {
-        <<record>>
-        +double amount
-        +String operationType
-    }
+ class UpdateBalanceRequest {
+ <<record>>
+ +double amount
+ +String operationType
+ }
 
-    class BankTransaction {
-        -UUID id
-        -UUID accountId
-        -BigDecimal amount
-        -String currency
-        -String merchantCategory
-        -String country
-        -Instant createdAt
-        +prePersist()
-    }
+ class BankTransaction {
+ -UUID id
+ -UUID accountId
+ -BigDecimal amount
+ -String currency
+ -String merchantCategory
+ -String country
+ -Instant createdAt
+ +prePersist()
+ }
 
-    class TransactionDTO {
-        <<record>>
-        +UUID id
-        +UUID accountId
-        +BigDecimal amount
-        +String currency
-        +String merchantCategory
-        +String country
-        +Instant createdAt
-    }
+ class TransactionDTO {
+ <<record>>
+ +UUID id
+ +UUID accountId
+ +BigDecimal amount
+ +String currency
+ +String merchantCategory
+ +String country
+ +Instant createdAt
+ }
 
-    class CreateTransactionRequest {
-        <<record>>
-        +UUID accountId
-        +BigDecimal amount
-        +String currency
-        +String merchantCategory
-        +String country
-    }
+ class CreateTransactionRequest {
+ <<record>>
+ +UUID accountId
+ +BigDecimal amount
+ +String currency
+ +String merchantCategory
+ +String country
+ }
 
-    class TransferRequest {
-        <<record>>
-        +UUID sourceAccountId
-        +UUID targetAccountId
-        +BigDecimal amount
-        +String currency
-    }
+ class TransferRequest {
+ <<record>>
+ +UUID sourceAccountId
+ +UUID targetAccountId
+ +BigDecimal amount
+ +String currency
+ }
 
-    class TransferResult {
-        <<record>>
-        +UUID sourceTransactionId
-        +UUID targetTransactionId
-        +String status
-        +String message
-    }
+ class TransferResult {
+ <<record>>
+ +UUID sourceTransactionId
+ +UUID targetTransactionId
+ +String status
+ +String message
+ }
 
-    class TransactionCreatedEvent {
-        <<record>>
-        +UUID eventId
-        +String eventType
-        +UUID transactionId
-        +UUID accountId
-        +BigDecimal amount
-        +String currency
-        +Instant occurredAt
-    }
+ class TransactionCreatedEvent {
+ <<record>>
+ +UUID eventId
+ +String eventType
+ +UUID transactionId
+ +UUID accountId
+ +BigDecimal amount
+ +String currency
+ +Instant occurredAt
+ }
 
-    class AuditEvent {
-        -UUID id
-        -UUID eventId
-        -String eventType
-        -UUID transactionId
-        -UUID accountId
-        -BigDecimal amount
-        -String currency
-        -Instant occurredAt
-        -Instant receivedAt
-    }
+ class AuditEvent {
+ -UUID id
+ -UUID eventId
+ -String eventType
+ -UUID transactionId
+ -UUID accountId
+ -BigDecimal amount
+ -String currency
+ -Instant occurredAt
+ -Instant receivedAt
+ }
 
-    BankAccount "1" --> "1" AccountStatus
-    BankAccount ..> AccountDTO : converts to
-    CreateAccountRequest ..> BankAccount : creates
-    UpdateBalanceRequest ..> BankAccount : modifies
+ BankAccount "1" --> "1" AccountStatus
+ BankAccount ..> AccountDTO : converts to
+ CreateAccountRequest ..> BankAccount : creates
+ UpdateBalanceRequest ..> BankAccount : modifies
 
-    BankTransaction ..> TransactionDTO : converts to
-    BankTransaction ..> TransactionCreatedEvent : generates
-    CreateTransactionRequest ..> BankTransaction : creates
-    TransferRequest ..> TransferResult : returns
+ BankTransaction ..> TransactionDTO : converts to
+ BankTransaction ..> TransactionCreatedEvent : generates
+ CreateTransactionRequest ..> BankTransaction : creates
+ TransferRequest ..> TransferResult : returns
 
-    TransactionCreatedEvent ..> AuditEvent : stored as
+ TransactionCreatedEvent ..> AuditEvent : stored as
 ```
 
 ---
@@ -282,24 +282,24 @@ Le microservice `chatbot-service` (Port 8084) réalise l'assistant bancaire agen
 ## 6. Communication Asynchrone avec Apache Kafka (Partie F)
 
 1. **Producteur (dans `transaction-service`)** :
-   - Publication asynchrone après persistance dans le topic `bank.transactions.created`.
-   - Utilisation explicite de `accountId` comme clé de partitionnement Kafka (`key = accountId.toString()`).
-   - Format d'événement conforme à la spécification :
-     ```json
-     {
-       "eventId": "UUID",
-       "eventType": "TransactionCreated",
-       "transactionId": "UUID",
-       "accountId": "UUID",
-       "amount": 250.00,
-       "currency": "EUR",
-       "occurredAt": "2026-01-15T10:30:00Z"
-     }
-     ```
+ - Publication asynchrone après persistance dans le topic `bank.transactions.created`.
+ - Utilisation explicite de `accountId` comme clé de partitionnement Kafka (`key = accountId.toString()`).
+ - Format d'événement conforme à la spécification :
+ ```json
+ {
+ "eventId": "UUID",
+ "eventType": "TransactionCreated",
+ "transactionId": "UUID",
+ "accountId": "UUID",
+ "amount": 250.00,
+ "currency": "EUR",
+ "occurredAt": "2026-01-15T10:30:00Z"
+ }
+ ```
 2. **Consommateur (dans `audit-service`)** :
-   - `@KafkaListener` sur le topic avec groupe `audit-group`.
-   - Journalisation structurée SLF4J de l'événement.
-   - Enregistrement dans la table `audit_events` pour audit trail, **sans aucune modification des données bancaires**.
+ - `@KafkaListener` sur le topic avec groupe `audit-group`.
+ - Journalisation structurée SLF4J de l'événement.
+ - Enregistrement dans la table `audit_events` pour audit trail, **sans aucune modification des données bancaires**.
 
 ---
 

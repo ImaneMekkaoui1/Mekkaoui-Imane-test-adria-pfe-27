@@ -15,16 +15,16 @@
       <!-- Navigation Tabs -->
       <nav class="nav-tabs">
         <button class="nav-tab" [class.active]="activeTab === 'accounts'" (click)="activeTab = 'accounts'">
-          💳 Comptes
+           Comptes
         </button>
         <button class="nav-tab" [class.active]="activeTab === 'transactions'" (click)="activeTab = 'transactions'">
-          💸 Transactions &amp; Virements
+           Transactions &amp; Virements
         </button>
         <button class="nav-tab" [class.active]="activeTab === 'audit'" (click)="activeTab = 'audit'">
-          🛡️ Piste d'Audit Kafka
+           Piste d'Audit Kafka
         </button>
         <button class="nav-tab" [class.active]="activeTab === 'chatbot'" (click)="activeTab = 'chatbot'">
-          🤖 Assistant IA
+           Assistant IA
         </button>
       </nav>
 
@@ -46,7 +46,7 @@
       <!-- Metrics Overview Cards -->
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-icon primary">💶</div>
+          <div class="metric-icon primary"></div>
           <div>
             <div class="metric-label">Solde Actif Global</div>
             <div class="metric-value">{{ totalBalance | number:'1.2-2' }} EUR</div>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="metric-card">
-          <div class="metric-icon success">✅</div>
+          <div class="metric-icon success"></div>
           <div>
             <div class="metric-label">Comptes Actifs</div>
             <div class="metric-value text-emerald-600">{{ activeAccountsCount }}</div>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="metric-card">
-          <div class="metric-icon danger">⛔</div>
+          <div class="metric-icon danger"></div>
           <div>
             <div class="metric-label">Comptes Bloqués</div>
             <div class="metric-value text-rose-600">{{ blockedAccountsCount }}</div>
@@ -78,7 +78,7 @@
               <h2 class="card-title">Portefeuille des Comptes Bancaires</h2>
               <p class="card-subtitle">Exposition synchronisée via REST, GraphQL et MCP</p>
             </div>
-            <button class="btn btn-secondary btn-sm" (click)="loadData()">🔄 Rafraîchir</button>
+            <button class="btn btn-secondary btn-sm" (click)="loadData()">Rafraîchir</button>
           </div>
 
           <div class="table-responsive">
@@ -146,7 +146,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary w-full">
-              ➕ Créer le Compte Bancaire
+               Créer le Compte Bancaire
             </button>
 
             <div *ngIf="accountFeedback" class="alert mt-3" [class.alert-success]="accountFeedback.success" [class.alert-danger]="!accountFeedback.success">
@@ -220,7 +220,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary w-full">
-              🚀 Valider et Exécuter le Virement
+              Valider et Exécuter le Virement
             </button>
 
             <div *ngIf="transferFeedback" class="alert mt-3" [class.alert-success]="transferFeedback.success" [class.alert-danger]="!transferFeedback.success">
@@ -352,7 +352,7 @@
       <div class="card chatbot-card">
         <div class="chatbot-header">
           <div class="flex items-center gap-3">
-            <div class="bot-avatar">🤖</div>
+            <div class="bot-avatar"></div>
             <div>
               <h2 class="card-title">Assistant Bancaire Intelligent</h2>
               <p class="card-subtitle">Propulsé par Spring AI &amp; Model Context Protocol (MCP)</p>
@@ -366,12 +366,12 @@
           <div *ngFor="let msg of chatMessages" class="chat-bubble-wrapper"
                [class.user-wrapper]="msg.sender === 'user'"
                [class.bot-wrapper]="msg.sender === 'assistant'">
-            
+
             <div class="chat-bubble" [class.user-bubble]="msg.sender === 'user'" [class.bot-bubble]="msg.sender === 'assistant'">
               <p class="chat-text">{{ msg.text }}</p>
-              
+
               <div *ngIf="msg.toolUsed && msg.toolUsed !== 'none'" class="tool-pill">
-                🔧 Tool MCP exécuté : <code>{{ msg.toolUsed }}</code>
+                Action MCP executee : <code>{{ msg.toolUsed }}</code>
               </div>
 
               <span class="chat-time">{{ msg.timestamp }}</span>
@@ -382,13 +382,13 @@
         <!-- Quick Question Chips -->
         <div class="quick-chips">
           <button class="chip" (click)="sendQuickPrompt('Quel est le solde de mon compte principal ?')">
-            💰 Solde du compte principal
+             Solde du compte principal
           </button>
           <button class="chip" (click)="sendQuickPrompt('Effectuer un virement de 100 EUR')">
-            💸 Virement de 100 EUR
+            Virement de 100 EUR
           </button>
           <button class="chip" (click)="sendQuickPrompt('Ouvrir un nouveau compte en EUR')">
-            ➕ Créer un compte
+            Creer un compte
           </button>
         </div>
 
@@ -397,7 +397,7 @@
           <input type="text" class="form-control chat-input" placeholder="Posez une question à l'assistant bancaire..."
                  [(ngModel)]="userInput" name="userInput">
           <button type="submit" class="btn btn-primary send-btn">
-            Envoyer 🚀
+            Envoyer
           </button>
         </form>
       </div>

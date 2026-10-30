@@ -1,94 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
-  <!-- Browser Frame (Light Theme) -->
-  <rect width="1200" height="700" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-  <rect width="1200" height="42" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
-  <rect y="30" width="1200" height="12" fill="#ffffff"/>
-  <circle cx="22" cy="21" r="5" fill="#ef4444"/>
-  <circle cx="38" cy="21" r="5" fill="#f59e0b"/>
-  <circle cx="54" cy="21" r="5" fill="#10b981"/>
-  
-  <rect x="140" y="8" width="920" height="26" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
-  <text x="160" y="25" fill="#475569" font-family="-apple-system, sans-serif" font-size="12">🔒 http://localhost:4200/chatbot — Adria Bank (Assistant IA Agentique &amp; MCP)</text>
+  <defs>
+    <style>
+      .app-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; fill: #0f172a; }
+      .app-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #64748b; }
+      .tab-btn { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 600; }
+      .chat-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13.5px; }
+      .chip-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; font-weight: 500; fill: #334155; }
+    </style>
+  </defs>
 
-  <!-- Header -->
-  <rect y="42" width="1200" height="70" fill="#ffffff" stroke="#e2e8f0"/>
-  <rect x="40" y="55" width="44" height="44" rx="10" fill="#2563eb"/>
-  <text x="62" y="84" fill="#ffffff" font-family="sans-serif" font-size="22" font-weight="900" text-anchor="middle">A</text>
-  <text x="96" y="74" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="800">Adria Bank</text>
-  <text x="96" y="92" fill="#64748b" font-family="sans-serif" font-size="11">Plateforme Microservices &amp; IA Agentique</text>
+  <rect width="1200" height="700" fill="#f8fafc" />
+  <rect x="20" y="15" width="1160" height="670" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
 
-  <!-- Nav Tabs -->
-  <rect x="400" y="56" width="500" height="42" rx="8" fill="#f1f5f9"/>
-  <text x="454" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">💳 Comptes</text>
-  <text x="565" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">💸 Virements</text>
-  <text x="685" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">🛡️ Piste Kafka</text>
-  <rect x="750" y="60" width="145" height="34" rx="6" fill="#ffffff"/>
-  <text x="822" y="82" fill="#2563eb" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">🤖 Assistant IA</text>
+  <rect x="20" y="15" width="1160" height="65" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+  <rect x="45" y="30" width="36" height="36" rx="8" fill="#2563eb" />
+  <text x="56" y="54" font-family="sans-serif" font-size="20" font-weight="800" fill="#ffffff">A</text>
 
-  <rect x="980" y="62" width="180" height="30" rx="15" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <circle cx="995" cy="77" r="4" fill="#10b981"/>
-  <text x="1005" y="82" fill="#047857" font-family="sans-serif" font-size="11" font-weight="bold">Gateway :8080 Connectée</text>
+  <text x="95" y="45" class="app-title" font-size="18">Adria Bank</text>
+  <text x="95" y="60" class="app-sub">Plateforme Microservices &amp; IA Agentique</text>
 
-  <!-- Chat Container Card (Clean Light Theme) -->
-  <rect x="40" y="130" width="1120" height="545" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="340" y="30" width="115" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+  <text x="365" y="53" class="tab-btn" fill="#64748b">Comptes</text>
 
-  <!-- Chat Card Header -->
-  <rect x="60" y="145" width="46" height="46" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
-  <text x="83" y="175" fill="#2563eb" font-size="22" text-anchor="middle">🤖</text>
-  <text x="120" y="166" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="800">Assistant Bancaire Intelligent (Chatbot Agentique)</text>
-  <text x="120" y="184" fill="#64748b" font-family="sans-serif" font-size="11">Propulsé par Spring AI &amp; Model Context Protocol (MCP) — Tools dynamiques</text>
+  <rect x="465" y="30" width="200" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="480" y="53" class="tab-btn" fill="#64748b">Transactions &amp; Virements</text>
 
-  <rect x="1010" y="152" width="130" height="26" rx="13" fill="#f5f3ff" stroke="#ddd6fe"/>
-  <text x="1075" y="169" fill="#6d28d9" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">MCP Tools Connectés</text>
+  <rect x="675" y="30" width="165" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="690" y="53" class="tab-btn" fill="#64748b">Piste d Audit Kafka</text>
 
-  <line x1="40" y1="205" x2="1160" y2="205" stroke="#f1f5f9"/>
+  <rect x="850" y="30" width="130" height="36" rx="6" fill="#2563eb"/>
+  <text x="865" y="53" class="tab-btn" fill="#ffffff">Assistant IA</text>
 
-  <!-- Conversation Area -->
-  <!-- Bot Message 1 -->
-  <rect x="60" y="220" width="560" height="58" rx="10" fill="#f1f5f9"/>
-  <text x="80" y="244" fill="#0f172a" font-family="sans-serif" font-size="13">Bonjour ! Je suis l'assistant bancaire IA d'Adria Bank.</text>
-  <text x="80" y="264" fill="#475569" font-family="sans-serif" font-size="12">Je peux consulter vos soldes, créer des comptes ou exécuter des virements sécurisés.</text>
-  <text x="590" y="270" fill="#94a3b8" font-family="sans-serif" font-size="10">10:45</text>
+  <rect x="1000" y="34" width="155" height="28" rx="14" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <circle cx="1015" cy="48" r="4" fill="#10b981" />
+  <text x="1026" y="52" font-family="sans-serif" font-size="11" font-weight="600" fill="#047857">Gateway :8080 Connectee</text>
 
-  <!-- User Message 1 -->
-  <rect x="680" y="295" width="460" height="42" rx="10" fill="#2563eb"/>
-  <text x="700" y="321" fill="#ffffff" font-family="sans-serif" font-size="13">Quel est le solde de mon compte principal ?</text>
-  <text x="1110" y="330" fill="#bfdbfe" font-family="sans-serif" font-size="10">10:46</text>
+  <rect x="45" y="105" width="1110" height="555" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
 
-  <!-- Bot Message 2 (Tool get_account_by_id) -->
-  <rect x="60" y="350" width="650" height="85" rx="10" fill="#f1f5f9"/>
-  <text x="80" y="375" fill="#0f172a" font-family="sans-serif" font-size="13">Votre compte principal (CUST-1001) a un solde actuel de :</text>
-  <text x="80" y="398" fill="#047857" font-family="sans-serif" font-size="14" font-weight="bold">5 000.00 EUR  (Statut: ACTIVE)</text>
-  <rect x="80" y="408" width="260" height="20" rx="4" fill="#e2e8f0"/>
-  <text x="90" y="422" fill="#334155" font-family="monospace" font-size="10">🔧 Tool MCP : get_account_by_id</text>
-  <text x="680" y="425" fill="#94a3b8" font-family="sans-serif" font-size="10">10:46</text>
+  <rect x="45" y="105" width="1110" height="55" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <circle cx="75" cy="132" r="14" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="68" y="137" font-family="sans-serif" font-size="12" font-weight="700" fill="#2563eb">IA</text>
+  <text x="100" y="132" font-family="sans-serif" font-size="14" font-weight="700" fill="#0f172a">Assistant Bancaire Intelligent (Spring AI &amp; MCP)</text>
+  <text x="100" y="148" font-family="sans-serif" font-size="11" fill="#64748b">Connecte aux serveurs MCP des microservices metier</text>
 
-  <!-- User Message 2 -->
-  <rect x="600" y="448" width="540" height="42" rx="10" fill="#2563eb"/>
-  <text x="620" y="474" fill="#ffffff" font-family="sans-serif" font-size="13">Peux-tu faire un virement de 100 EUR vers le compte CUST-1002 ?</text>
-  <text x="1110" y="483" fill="#bfdbfe" font-family="sans-serif" font-size="10">10:47</text>
+  <rect x="980" y="118" width="150" height="28" rx="14" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="1000" y="136" font-family="sans-serif" font-size="11" font-weight="700" fill="#047857">MCP Tools Actifs</text>
 
-  <!-- Bot Message 3 (Tool transfer_funds) -->
-  <rect x="60" y="500" width="700" height="65" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
-  <text x="80" y="525" fill="#065f46" font-family="sans-serif" font-size="13" font-weight="bold">✅ Virement de 100.00 EUR exécuté avec succès via le tool MCP transfer_funds !</text>
-  <text x="80" y="546" fill="#047857" font-family="sans-serif" font-size="12">Nouveau solde émetteur : 4 900.00 EUR • Événement Kafka émis sur bank.transactions.created</text>
-  <text x="730" y="555" fill="#94a3b8" font-family="sans-serif" font-size="10">10:47</text>
+  <rect x="65" y="180" width="550" height="60" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="85" y="205" class="chat-text" fill="#0f172a">Bonjour. Je suis l assistant bancaire intelligent d Adria Bank.</text>
+  <text x="85" y="225" class="chat-text" fill="#0f172a">Comment puis-je vous assister aujourd hui ?</text>
+  <text x="550" y="232" font-family="sans-serif" font-size="10" fill="#94a3b8">10:47</text>
 
-  <!-- Bottom: Quick Chips & Input Bar -->
-  <line x1="40" y1="580" x2="1160" y2="580" stroke="#f1f5f9"/>
+  <rect x="680" y="260" width="450" height="50" rx="8" fill="#2563eb"/>
+  <text x="700" y="290" class="chat-text" fill="#ffffff">Quel est le solde de mon compte principal ?</text>
+  <text x="1075" y="302" font-family="sans-serif" font-size="10" fill="#bfdbfe">10:48</text>
 
-  <rect x="60" y="590" width="200" height="26" rx="13" fill="#f8fafc" stroke="#e2e8f0"/>
-  <text x="160" y="607" fill="#475569" font-family="sans-serif" font-size="11" text-anchor="middle">💰 Solde compte principal</text>
+  <rect x="65" y="330" width="620" height="110" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect x="85" y="345" width="310" height="24" rx="4" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="95" y="361" font-family="monospace" font-size="11" font-weight="600" fill="#1d4ed8">Action MCP executee : get_account_balance</text>
+  <text x="85" y="395" class="chat-text" fill="#0f172a">Votre compte principal (reference CUST-ADRIA-001) a un solde</text>
+  <text x="85" y="415" class="chat-text" fill="#0f172a">actuel de 2 500,00 EUR. Le statut est ACTIVE.</text>
+  <text x="620" y="432" font-family="sans-serif" font-size="10" fill="#94a3b8">10:48</text>
 
-  <rect x="270" y="590" width="180" height="26" rx="13" fill="#f8fafc" stroke="#e2e8f0"/>
-  <text x="360" y="607" fill="#475569" font-family="sans-serif" font-size="11" text-anchor="middle">💸 Virement de 100 EUR</text>
+  <rect x="65" y="555" width="220" height="32" rx="16" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="85" y="575" class="chip-text">Solde du compte principal</text>
 
-  <rect x="460" y="590" width="180" height="26" rx="13" fill="#f8fafc" stroke="#e2e8f0"/>
-  <text x="550" y="607" fill="#475569" font-family="sans-serif" font-size="11" text-anchor="middle">➕ Ouvrir un compte</text>
+  <rect x="300" y="555" width="180" height="32" rx="16" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="320" y="575" class="chip-text">Virement de 100 EUR</text>
 
-  <!-- Input Field -->
-  <rect x="60" y="625" width="940" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="80" y="650" fill="#94a3b8" font-family="sans-serif" font-size="13">Posez une question ou demandez une opération bancaire...</text>
-  <rect x="1015" y="625" width="125" height="40" rx="8" fill="#2563eb"/>
-  <text x="1077" y="650" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Envoyer 🚀</text>
+  <rect x="495" y="555" width="160" height="32" rx="16" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="515" y="575" class="chip-text">Nouveau compte</text>
+
+  <rect x="65" y="600" width="940" height="42" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="85" y="626" font-family="sans-serif" font-size="13" fill="#94a3b8">Posez une question a l assistant bancaire...</text>
+
+  <rect x="1020" y="600" width="115" height="42" rx="6" fill="#2563eb"/>
+  <text x="1055" y="626" font-family="sans-serif" font-size="13" font-weight="700" fill="#ffffff">Envoyer</text>
 </svg>
