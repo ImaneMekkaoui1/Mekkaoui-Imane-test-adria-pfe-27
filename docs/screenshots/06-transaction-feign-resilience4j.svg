@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="100%" height="100%">
+  <!-- Terminal Frame -->
+  <rect width="1000" height="520" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <rect width="1000" height="40" rx="12" fill="#1e293b"/>
+  <rect y="28" width="1000" height="12" fill="#1e293b"/>
+  <circle cx="20" cy="20" r="5" fill="#ef4444"/>
+  <circle cx="36" cy="20" r="5" fill="#f59e0b"/>
+  <circle cx="52" cy="20" r="5" fill="#10b981"/>
+  <text x="500" y="24" fill="#fb7185" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Transaction-Service (:8082) — OpenFeign &amp; Resilience4J Circuit Breaker Tests</text>
+
+  <!-- Command 1: Transfert Réussi -->
+  <text x="30" y="70" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold">$ curl -i -X POST http://localhost:8082/api/transactions/transfer \</text>
+  <text x="50" y="88" fill="#94a3b8" font-family="monospace" font-size="12">  -H "Content-Type: application/json" \</text>
+  <text x="50" y="106" fill="#94a3b8" font-family="monospace" font-size="12">  -d '{"sourceAccountId": "11111111-...", "targetAccountId": "22222222-...", "amount": 100.00, "currency": "EUR"}'</text>
+
+  <text x="30" y="132" fill="#10b981" font-family="monospace" font-size="12" font-weight="bold">HTTP/1.1 200 OK</text>
+  <text x="30" y="150" fill="#f8fafc" font-family="monospace" font-size="12">{</text>
+  <text x="50" y="168" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"sourceTransactionId"</tspan>: <tspan fill="#a78bfa">"8e2c7a40-3b1d-4876-90fe-f4728d11c001"</tspan>,</text>
+  <text x="50" y="186" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"targetTransactionId"</tspan>: <tspan fill="#a78bfa">"9f3d8b51-4c2e-4987-a1ff-e5839e22d002"</tspan>,</text>
+  <text x="50" y="204" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"status"</tspan>: <tspan fill="#34d399">"SUCCESS"</tspan>,</text>
+  <text x="50" y="222" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"message"</tspan>: <tspan fill="#34d399">"Virement de 100.00 EUR exécuté avec succès"</tspan></text>
+  <text x="30" y="240" fill="#f8fafc" font-family="monospace" font-size="12">}</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="265" x2="970" y2="265" stroke="#334155" stroke-dasharray="3"/>
+
+  <!-- Command 2: Rejet Dépassement Plafond (1500 > 1000 EUR) -->
+  <text x="30" y="295" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold">$ curl -i -X POST http://localhost:8082/api/transactions \</text>
+  <text x="50" y="313" fill="#94a3b8" font-family="monospace" font-size="12">  -d '{"accountId": "11111111-...", "amount": 1500.00, "currency": "EUR"}'</text>
+
+  <text x="30" y="340" fill="#ef4444" font-family="monospace" font-size="12" font-weight="bold">HTTP/1.1 400 Bad Request</text>
+  <text x="30" y="358" fill="#f8fafc" font-family="monospace" font-size="12">{</text>
+  <text x="50" y="376" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"status"</tspan>: <tspan fill="#ef4444">400</tspan>,</text>
+  <text x="50" y="394" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"error"</tspan>: <tspan fill="#ef4444">"Bad Request"</tspan>,</text>
+  <text x="50" y="412" fill="#f8fafc" font-family="monospace" font-size="12">  <tspan fill="#38bdf8">"message"</tspan>: <tspan fill="#fca5a5">"Le montant (1500.00 EUR) dépasse le plafond autorisé de 1000.0"</tspan></text>
+  <text x="30" y="430" fill="#f8fafc" font-family="monospace" font-size="12">}</text>
+
+  <!-- Note on Resilience4j -->
+  <rect x="30" y="450" width="940" height="50" rx="6" fill="#1e293b" stroke="#f43f5e"/>
+  <text x="50" y="472" fill="#fb7185" font-family="sans-serif" font-size="11" font-weight="bold">🛡️ TOLÉRANCE AUX PANNES :</text>
+  <text x="50" y="488" fill="#cbd5e1" font-family="sans-serif" font-size="11">En cas d'arrêt de account-service, Resilience4J déclenche AccountServiceClientFallback avec message sécurisé sans bloquer le serveur.</text>
+</svg>
+

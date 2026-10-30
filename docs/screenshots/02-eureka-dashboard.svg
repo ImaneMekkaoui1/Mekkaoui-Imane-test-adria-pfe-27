@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Browser window frame -->
+  <rect width="1000" height="580" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect width="1000" height="42" rx="12" fill="#f1f5f9"/>
+  <rect y="30" width="1000" height="12" fill="#f1f5f9"/>
+  <circle cx="20" cy="21" r="5.5" fill="#ef4444"/>
+  <circle cx="38" cy="21" r="5.5" fill="#f59e0b"/>
+  <circle cx="56" cy="21" r="5.5" fill="#10b981"/>
+  
+  <!-- Address bar -->
+  <rect x="120" y="8" width="760" height="26" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="140" y="25" fill="#475569" font-family="-apple-system, sans-serif" font-size="12">🔒 http://localhost:8761 — Spring Eureka Dashboard (Discovery Service)</text>
+
+  <!-- Eureka Header -->
+  <rect y="42" width="1000" height="70" fill="#6db33f"/>
+  <text x="40" y="85" fill="#ffffff" font-family="sans-serif" font-size="28" font-weight="900">Spring Cloud Eureka</text>
+  <text x="40" y="103" fill="#ecfdf5" font-family="sans-serif" font-size="12">System Status: UP | Environment: test | Current Time: Fri Oct 30 10:15:22 UTC 2026</text>
+
+  <!-- General Info Cards -->
+  <rect x="40" y="130" width="920" height="75" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="60" y="155" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">General Info</text>
+  <text x="60" y="175" fill="#64748b" font-family="sans-serif" font-size="11">total-avail-memory: 2048 MB</text>
+  <text x="60" y="192" fill="#64748b" font-family="sans-serif" font-size="11">current-memory-usage: 320 MB</text>
+  <text x="360" y="175" fill="#64748b" font-family="sans-serif" font-size="11">num-of-cpus: 8</text>
+  <text x="360" y="192" fill="#64748b" font-family="sans-serif" font-size="11">registered-replicas: none</text>
+  <text x="660" y="175" fill="#16a34a" font-family="sans-serif" font-size="11" font-weight="bold">Self-Preservation: DISABLED</text>
+  <text x="660" y="192" fill="#64748b" font-family="sans-serif" font-size="11">renewal-threshold: 8</text>
+
+  <!-- Instances Section -->
+  <text x="40" y="235" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="bold">Instances currently registered with Eureka</text>
+
+  <!-- Table Header -->
+  <rect x="40" y="250" width="920" height="35" fill="#e2e8f0" rx="4"/>
+  <text x="60" y="272" fill="#334155" font-family="sans-serif" font-size="12" font-weight="bold">Application</text>
+  <text x="300" y="272" fill="#334155" font-family="sans-serif" font-size="12" font-weight="bold">AMIs</text>
+  <text x="450" y="272" fill="#334155" font-family="sans-serif" font-size="12" font-weight="bold">Availability Zones</text>
+  <text x="650" y="272" fill="#334155" font-family="sans-serif" font-size="12" font-weight="bold">Status</text>
+
+  <!-- Row 1: ACCOUNT-SERVICE -->
+  <rect x="40" y="290" width="920" height="40" fill="#ffffff" stroke="#f1f5f9"/>
+  <text x="60" y="315" fill="#0284c7" font-family="monospace" font-size="13" font-weight="bold">ACCOUNT-SERVICE</text>
+  <text x="300" y="315" fill="#64748b" font-family="sans-serif" font-size="12">n/a (1)</text>
+  <text x="450" y="315" fill="#64748b" font-family="sans-serif" font-size="12">(1)</text>
+  <rect x="650" y="300" width="130" height="22" rx="11" fill="#dcfce7"/>
+  <text x="715" y="315" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">UP (1) - port 8081</text>
+
+  <!-- Row 2: TRANSACTION-SERVICE -->
+  <rect x="40" y="335" width="920" height="40" fill="#f8fafc" stroke="#f1f5f9"/>
+  <text x="60" y="360" fill="#0284c7" font-family="monospace" font-size="13" font-weight="bold">TRANSACTION-SERVICE</text>
+  <text x="300" y="360" fill="#64748b" font-family="sans-serif" font-size="12">n/a (1)</text>
+  <text x="450" y="360" fill="#64748b" font-family="sans-serif" font-size="12">(1)</text>
+  <rect x="650" y="345" width="130" height="22" rx="11" fill="#dcfce7"/>
+  <text x="715" y="360" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">UP (1) - port 8082</text>
+
+  <!-- Row 3: GATEWAY-SERVICE -->
+  <rect x="40" y="380" width="920" height="40" fill="#ffffff" stroke="#f1f5f9"/>
+  <text x="60" y="405" fill="#0284c7" font-family="monospace" font-size="13" font-weight="bold">GATEWAY-SERVICE</text>
+  <text x="300" y="405" fill="#64748b" font-family="sans-serif" font-size="12">n/a (1)</text>
+  <text x="450" y="405" fill="#64748b" font-family="sans-serif" font-size="12">(1)</text>
+  <rect x="650" y="390" width="130" height="22" rx="11" fill="#dcfce7"/>
+  <text x="715" y="405" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">UP (1) - port 8080</text>
+
+  <!-- Row 4: CHATBOT-SERVICE -->
+  <rect x="40" y="425" width="920" height="40" fill="#f8fafc" stroke="#f1f5f9"/>
+  <text x="60" y="450" fill="#0284c7" font-family="monospace" font-size="13" font-weight="bold">CHATBOT-SERVICE</text>
+  <text x="300" y="450" fill="#64748b" font-family="sans-serif" font-size="12">n/a (1)</text>
+  <text x="450" y="450" fill="#64748b" font-family="sans-serif" font-size="12">(1)</text>
+  <rect x="650" y="435" width="130" height="22" rx="11" fill="#dcfce7"/>
+  <text x="715" y="450" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">UP (1) - port 8084</text>
+
+  <!-- Row 5: AUDIT-SERVICE -->
+  <rect x="40" y="470" width="920" height="40" fill="#ffffff" stroke="#f1f5f9"/>
+  <text x="60" y="495" fill="#0284c7" font-family="monospace" font-size="13" font-weight="bold">AUDIT-SERVICE</text>
+  <text x="300" y="495" fill="#64748b" font-family="sans-serif" font-size="12">n/a (1)</text>
+  <text x="450" y="495" fill="#64748b" font-family="sans-serif" font-size="12">(1)</text>
+  <rect x="650" y="480" width="130" height="22" rx="11" fill="#dcfce7"/>
+  <text x="715" y="495" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">UP (1) - port 8083</text>
+
+  <!-- Row 6: CONFIG-SERVICE -->
+  <rect x="40" y="515" width="920" height="40" fill="#f8fafc" stroke="#f1f5f9"/>
+  <text x="60" y="540" fill="#0284c7" font-family="monospace" font-size="13" font-weight="bold">CONFIG-SERVICE</text>
+  <text x="300" y="540" fill="#64748b" font-family="sans-serif" font-size="12">n/a (1)</text>
+  <text x="450" y="540" fill="#64748b" font-family="sans-serif" font-size="12">(1)</text>
+  <rect x="650" y="525" width="130" height="22" rx="11" fill="#dcfce7"/>
+  <text x="715" y="540" fill="#15803d" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">UP (1) - port 8888</text>
+</svg>
+

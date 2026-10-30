@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
+  <!-- Browser Frame (Light Theme) -->
+  <rect width="1200" height="700" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect width="1200" height="42" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect y="30" width="1200" height="12" fill="#ffffff"/>
+  <circle cx="22" cy="21" r="5" fill="#ef4444"/>
+  <circle cx="38" cy="21" r="5" fill="#f59e0b"/>
+  <circle cx="54" cy="21" r="5" fill="#10b981"/>
+  
+  <rect x="140" y="8" width="920" height="26" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="160" y="25" fill="#475569" font-family="-apple-system, sans-serif" font-size="12">🔒 http://localhost:4200/transactions — Adria Bank (Virements &amp; Règles Métier)</text>
+
+  <!-- Header -->
+  <rect y="42" width="1200" height="70" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="40" y="55" width="44" height="44" rx="10" fill="#2563eb"/>
+  <text x="62" y="84" fill="#ffffff" font-family="sans-serif" font-size="22" font-weight="900" text-anchor="middle">A</text>
+  <text x="96" y="74" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="800">Adria Bank</text>
+  <text x="96" y="92" fill="#64748b" font-family="sans-serif" font-size="11">Plateforme Microservices &amp; IA Agentique</text>
+
+  <!-- Nav Tabs -->
+  <rect x="400" y="56" width="500" height="42" rx="8" fill="#f1f5f9"/>
+  <text x="454" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">💳 Comptes</text>
+  <rect x="510" y="60" width="120" height="34" rx="6" fill="#ffffff"/>
+  <text x="570" y="82" fill="#2563eb" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">💸 Virements</text>
+  <text x="685" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">🛡️ Piste Kafka</text>
+  <text x="820" y="82" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">🤖 Assistant IA</text>
+
+  <rect x="980" y="62" width="180" height="30" rx="15" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <circle cx="995" cy="77" r="4" fill="#10b981"/>
+  <text x="1005" y="82" fill="#047857" font-family="sans-serif" font-size="11" font-weight="bold">Gateway :8080 Connectée</text>
+
+  <!-- Main Grid Top -->
+  <!-- Transfer Form Card (Left) -->
+  <rect x="40" y="130" width="560" height="280" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="65" y="165" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="800">Effectuer un Virement Bancaire</text>
+  <text x="65" y="185" fill="#64748b" font-family="sans-serif" font-size="11">Contrôle de solde préalable &amp; Plafond maximal de 1000 EUR</text>
+
+  <text x="65" y="218" fill="#334155" font-family="sans-serif" font-size="11" font-weight="700">COMPTE ÉMETTEUR (DÉBITÉ)</text>
+  <rect x="65" y="226" width="510" height="34" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="80" y="248" fill="#0f172a" font-family="sans-serif" font-size="12">CUST-1001 — Solde: 5 000.00 EUR (Statut: ACTIF)</text>
+
+  <text x="65" y="280" fill="#334155" font-family="sans-serif" font-size="11" font-weight="700">COMPTE BÉNÉFICIAIRE (CRÉDITÉ)</text>
+  <rect x="65" y="288" width="510" height="34" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="80" y="310" fill="#0f172a" font-family="sans-serif" font-size="12">CUST-1002 — Solde: 1 500.00 EUR (Statut: ACTIF)</text>
+
+  <text x="65" y="342" fill="#334155" font-family="sans-serif" font-size="11" font-weight="700">MONTANT (MAX 1000 EUR)</text>
+  <rect x="65" y="350" width="240" height="34" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="80" y="372" fill="#0f172a" font-family="sans-serif" font-size="13" font-weight="bold">100.00</text>
+
+  <rect x="320" y="350" width="255" height="34" rx="6" fill="#2563eb"/>
+  <text x="447" y="372" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">🚀 Valider le Virement</text>
+
+  <!-- Right: Business Rules Box -->
+  <rect x="620" y="130" width="540" height="280" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="645" y="165" fill="#0f172a" font-family="sans-serif" font-size="16" font-weight="800">Règles Métier Appliquées</text>
+  <text x="645" y="185" fill="#64748b" font-family="sans-serif" font-size="11">Conformité avec les exigences de l'épreuve technique</text>
+
+  <rect x="645" y="205" width="490" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <circle cx="665" cy="226" r="10" fill="#2563eb"/>
+  <text x="665" y="230" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">1</text>
+  <text x="685" y="224" fill="#0f172a" font-family="sans-serif" font-size="11" font-weight="bold">Plafond Maximum : 1000 EUR</text>
+  <text x="685" y="238" fill="#64748b" font-family="sans-serif" font-size="10">Injecté depuis Config-Service (bank.transaction.max-amount=1000)</text>
+
+  <rect x="645" y="255" width="490" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <circle cx="665" cy="276" r="10" fill="#10b981"/>
+  <text x="665" y="280" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">2</text>
+  <text x="685" y="274" fill="#0f172a" font-family="sans-serif" font-size="11" font-weight="bold">Comptes Actifs &amp; Concordance Devise</text>
+  <text x="685" y="288" fill="#64748b" font-family="sans-serif" font-size="10">Rejet immédiat si le compte est BLOCKED ou si devise incompatible</text>
+
+  <rect x="645" y="305" width="490" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <circle cx="665" cy="326" r="10" fill="#a855f7"/>
+  <text x="665" y="330" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">3</text>
+  <text x="685" y="324" fill="#0f172a" font-family="sans-serif" font-size="11" font-weight="bold">Tolérance aux Pannes Resilience4J</text>
+  <text x="685" y="338" fill="#64748b" font-family="sans-serif" font-size="10">Circuit Breaker &amp; Fallback en cas d'indisponibilité de account-service</text>
+
+  <rect x="645" y="355" width="490" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <circle cx="665" cy="376" r="10" fill="#f59e0b"/>
+  <text x="665" y="380" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">4</text>
+  <text x="685" y="374" fill="#0f172a" font-family="sans-serif" font-size="11" font-weight="bold">Event Streaming Kafka</text>
+  <text x="685" y="388" fill="#64748b" font-family="sans-serif" font-size="10">Publication sur bank.transactions.created avec clé accountId</text>
+
+  <!-- Bottom: Table of Transactions -->
+  <rect x="40" y="430" width="1120" height="240" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="65" y="460" fill="#0f172a" font-family="sans-serif" font-size="15" font-weight="800">Historique des Transactions Récentes</text>
+
+  <rect x="65" y="475" width="1070" height="32" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="80" y="496" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">ID TRANSACTION</text>
+  <text x="340" y="496" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">COMPTE SOURCE</text>
+  <text x="550" y="496" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">OPÉRATION</text>
+  <text x="740" y="496" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">MONTANT</text>
+  <text x="900" y="496" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">PAYS</text>
+  <text x="1000" y="496" fill="#475569" font-family="sans-serif" font-size="11" font-weight="700">DATE</text>
+
+  <line x1="65" y1="535" x2="1135" y2="535" stroke="#f1f5f9"/>
+  <text x="80" y="524" fill="#64748b" font-family="monospace" font-size="11">tx-deb-1730284200</text>
+  <text x="340" y="524" fill="#64748b" font-family="monospace" font-size="11">11111111-1111-1111-...</text>
+  <text x="550" y="524" fill="#b91c1c" font-family="sans-serif" font-size="12" font-weight="600">TRANSFER_DEBIT</text>
+  <text x="740" y="524" fill="#0f172a" font-family="sans-serif" font-size="12" font-weight="bold">-100.00 EUR</text>
+  <text x="900" y="524" fill="#64748b" font-family="sans-serif" font-size="12">MA</text>
+  <text x="1000" y="524" fill="#64748b" font-family="sans-serif" font-size="11">Aujourd'hui 10:45</text>
+
+  <line x1="65" y1="575" x2="1135" y2="575" stroke="#f1f5f9"/>
+  <text x="80" y="564" fill="#64748b" font-family="monospace" font-size="11">tx-crd-1730284200</text>
+  <text x="340" y="564" fill="#64748b" font-family="monospace" font-size="11">22222222-2222-2222-...</text>
+  <text x="550" y="564" fill="#047857" font-family="sans-serif" font-size="12" font-weight="600">TRANSFER_CREDIT</text>
+  <text x="740" y="564" fill="#059669" font-family="sans-serif" font-size="12" font-weight="bold">+100.00 EUR</text>
+  <text x="900" y="564" fill="#64748b" font-family="sans-serif" font-size="12">MA</text>
+  <text x="1000" y="564" fill="#64748b" font-family="sans-serif" font-size="11">Aujourd'hui 10:45</text>
+</svg>
