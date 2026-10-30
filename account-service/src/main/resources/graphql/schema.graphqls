@@ -1,0 +1,38 @@
+type BankAccount {
+    id: ID!
+    customerReference: String!
+    status: AccountStatus!
+    currency: String!
+    balance: Float!
+}
+
+enum AccountStatus {
+    ACTIVE
+    BLOCKED
+}
+
+input CreateAccountInput {
+    customerReference: String!
+    currency: String!
+    initialBalance: Float!
+}
+
+input UpdateBalanceInput {
+    accountId: ID!
+    amount: Float!
+    operationType: String!
+}
+
+type Query {
+    allAccounts: [BankAccount]!
+    accountById(id: ID!): BankAccount
+    accountsByCustomer(customerReference: String!): [BankAccount]!
+}
+
+type Mutation {
+    createAccount(input: CreateAccountInput!): BankAccount!
+    updateBalance(input: UpdateBalanceInput!): BankAccount!
+    blockAccount(id: ID!): BankAccount!
+    activateAccount(id: ID!): BankAccount!
+}
+
