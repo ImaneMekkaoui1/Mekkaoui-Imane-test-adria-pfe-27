@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: account-service-rest
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/api/accounts/**, /mcp/accounts/**
+        - id: account-service-graphql
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/graphql/accounts/**
+          filters:
+            - RewritePath=/graphql/accounts/(?<segment>.*), /graphql/$\{segment}
+        - id: transaction-service-rest
+          uri: lb://TRANSACTION-SERVICE
+          predicates:
+            - Path=/api/transactions/**, /mcp/transactions/**
+        - id: transaction-service-graphql
+          uri: lb://TRANSACTION-SERVICE
+          predicates:
+            - Path=/graphql/transactions/**
+          filters:
+            - RewritePath=/graphql/transactions/(?<segment>.*), /graphql/$\{segment}
+        - id: audit-service-rest
+          uri: lb://AUDIT-SERVICE
+          predicates:
+            - Path=/api/audit/**
+        - id: chatbot-service-rest
+          uri: lb://CHATBOT-SERVICE
+          predicates:
+            - Path=/api/chat/**, /api/mcp/**
+

@@ -1,0 +1,7 @@
+server:
+  port: 8084
+
+chatbot:
+  account-service-url: http://localhost:8081
+  transaction-service-url: http://localhost:8082
+
